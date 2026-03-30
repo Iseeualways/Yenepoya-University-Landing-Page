@@ -1,0 +1,3489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yenepoya University — Excellence in Medical Education</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --noir: #0a0a0a;
+            --blanc: #fafaf9;
+            --accent-gold: #d4af37;
+            --accent-emerald: #059669;
+            --accent-ruby: #dc2626;
+            --accent-sapphire: #2563eb;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-600: #4b5563;
+            --gray-900: #111827;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--blanc);
+            color: var(--noir);
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        ::selection {
+            background: var(--accent-gold);
+            color: var(--noir);
+        }
+
+        /* Custom Cursor */
+        body {
+            cursor: none;
+        }
+
+        .cursor {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: difference;
+            transition: transform 0.15s ease;
+        }
+
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--accent-gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            mix-blend-mode: difference;
+        }
+
+        a:hover~.cursor,
+        button:hover~.cursor {
+            transform: scale(2);
+        }
+
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            z-index: 10000;
+            transform-origin: left;
+            transition: width 0.1s ease;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            cursor: auto;
+        }
+
+        nav.scrolled {
+            background: rgba(250, 250, 249, 0.8);
+            backdrop-filter: blur(30px) saturate(180%);
+            padding: 1.5rem 4rem;
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        /* Default (Desktop) */
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--noir);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            display: block;
+        }
+
+
+        /* Tablet */
+        @media (max-width: 992px) {
+            .logo img {
+                height: 40px;
+            }
+        }
+
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .logo {
+                gap: 8px;
+            }
+
+            .logo img {
+                height: 32px;
+                /* Perfect mobile size */
+            }
+        }
+
+
+        /* Small Mobile */
+        @media (max-width: 480px) {
+            .logo img {
+                height: 28px;
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: 'Syne', sans-serif;
+            font-weight: 500;
+            font-size: 0.875rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--noir);
+            text-decoration: none;
+            position: relative;
+            transition: opacity 0.3s ease;
+            cursor: none;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--noir);
+            color: var(--blanc);
+            padding: 0.875rem 2rem;
+            border-radius: 0;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: 0.875rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border: none;
+            cursor: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-gold);
+            color: var(--noir);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: none;
+        }
+
+        .mobile-menu span {
+            width: 24px;
+            height: 2px;
+            background: var(--noir);
+            transition: all 0.3s ease;
+        }
+
+
+        /* .hero-bg-text {
+            position: absolute;
+            font-family: 'Playfair Display', serif;
+            font-size: 20vw;
+            font-weight: 900;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(0, 0, 0, 0.03);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            pointer-events: none;
+            user-select: none;
+        } */
+
+        .hero-content {
+            max-width: 1600px;
+
+            padding: 0 4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-tag {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 2rem;
+            display: block;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            color: var(--gray-100);
+            font-weight: 800;
+            line-height: 0.95;
+            letter-spacing: -3px;
+            margin-bottom: 2rem;
+            max-width: 1200px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        .hero-subtitle {
+            font-family: 'DM Sans', sans-serif;
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            line-height: 1.6;
+            color: var(--gray-100);
+            max-width: 700px;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.7s forwards;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.9s forwards;
+        }
+
+        .btn-primary {
+            background: var(--noir);
+            color: var(--blanc);
+            padding: 1.25rem 3rem;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: 0.875rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            cursor: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gold);
+            transition: left 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            z-index: -1;
+        }
+
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        .btn-primary:hover {
+            color: var(--noir);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--noir);
+            padding: 1.25rem 3rem;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: 0.875rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-block;
+            border: 1px solid var(--noir);
+            cursor: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--noir);
+            color: var(--blanc);
+        }
+
+
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 4rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray-600);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.3s forwards;
+        }
+
+        .scroll-line {
+            width: 60px;
+            height: 1px;
+            background: var(--gray-600);
+            animation: scrollPulse 2s ease infinite;
+        }
+
+        @keyframes scrollPulse {
+
+            0%,
+            100% {
+                transform: scaleX(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scaleX(0.5);
+                opacity: 0.5;
+            }
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 12rem 4rem;
+            position: relative;
+        }
+
+        .section-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 10rem;
+            font-weight: 900;
+            position: absolute;
+            top: 8rem;
+            left: 4rem;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(0, 0, 0, 0.05);
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .section-header {
+            max-width: 1400px;
+            margin: 0 auto 8rem;
+        }
+
+        .section-tag {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 2rem;
+
+        }
+
+        .section-description {
+            font-size: 1.25rem;
+            line-height: 1.7;
+            color: var(--gray-600);
+            max-width: 700px;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .feature {
+            background: var(--blanc);
+            padding: 4rem 3rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--noir);
+            transition: left 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            z-index: 0;
+        }
+
+        .feature:hover::before {
+            left: 0;
+        }
+
+        .feature:hover .feature-number,
+        .feature:hover .feature-title,
+        .feature:hover .feature-description {
+            color: var(--blanc);
+        }
+
+        .feature-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--accent-gold);
+            line-height: 1;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+            transition: color 0.6s ease;
+        }
+
+        .feature-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            transition: color 0.6s ease;
+        }
+
+        .feature-description {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--gray-600);
+            position: relative;
+            z-index: 1;
+            transition: color 0.6s ease;
+        }
+
+        /* Process Timeline */
+        .process-section {
+            background: var(--gray-50);
+        }
+
+        .timeline {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 6rem;
+            margin-bottom: 8rem;
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 8rem;
+            font-weight: 900;
+            color: transparent;
+            -webkit-text-stroke: 2px var(--noir);
+            line-height: 1;
+        }
+
+        .timeline-content h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-content p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--gray-600);
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            background: var(--blanc);
+        }
+
+        .testimonials-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .testimonial {
+            background: var(--blanc);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .testimonial:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-10px);
+        }
+
+        .testimonial-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: 2rem;
+            color: var(--noir);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--noir);
+        }
+
+        .author-info h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        /* FAQ */
+        .faq-section {
+            background: var(--noir);
+            color: var(--blanc);
+        }
+
+        .faq-section .section-number {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-section .section-tag {
+            color: var(--accent-gold);
+        }
+
+        .faq-section .section-title {
+            color: var(--blanc);
+        }
+
+        .faq-list {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .faq {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2.5rem 0;
+            cursor: none;
+        }
+
+        .faq-question {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: none;
+            transition: color 0.3s ease;
+        }
+
+        .faq:hover .faq-question {
+            color: var(--accent-gold);
+        }
+
+        .faq-icon {
+            font-size: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .faq.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding-top: 1.5rem;
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--accent-gold);
+            color: var(--noir);
+            text-align: center;
+            padding: 12rem 4rem;
+        }
+
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 2rem;
+        }
+
+        .cta-section p {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-section .btn-primary {
+            background: var(--noir);
+            color: var(--blanc);
+        }
+
+        .cta-section .btn-primary::before {
+            background: var(--blanc);
+        }
+
+        .cta-section .btn-primary:hover {
+            color: var(--noir);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--noir);
+            color: var(--blanc);
+            padding: 8rem 4rem 3rem;
+        }
+
+        .footer-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 6rem;
+            margin-bottom: 6rem;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-brand p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.875rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--blanc);
+            transition: all 0.3s ease;
+            cursor: none;
+        }
+
+        .social-link:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero-metrics {
+                position: static;
+                margin-top: 4rem;
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .metric {
+                text-align: left;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .programs-carousel {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.5rem 2rem;
+            }
+
+            nav.scrolled {
+                padding: 1.25rem 2rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background: var(--blanc);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .mobile-menu {
+                display: flex;
+                z-index: 1001;
+            }
+
+            .mobile-menu.active span:nth-child(1) {
+                transform: rotate(45deg) translate(6px, 6px);
+            }
+
+            .mobile-menu.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-menu.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+
+            .hero {
+                height: auto;
+                min-height: 100vh;
+                padding: 8rem 0 4rem;
+            }
+
+            .hero-content {
+                padding: 0 2rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-cta-group {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero-metrics {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .scroll-indicator {
+                left: 2rem;
+            }
+
+            .section {
+                padding: 8rem 2rem;
+            }
+
+            .section-number {
+                font-size: 6rem;
+                left: 2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .programs-carousel {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .timeline-number {
+                font-size: 5rem;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .cta-section {
+                padding: 8rem 2rem;
+            }
+
+            footer {
+                padding: 6rem 2rem 2rem;
+            }
+        }
+
+        /* Reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 {
+            transition-delay: 0.1s;
+        }
+
+        .stagger-2 {
+            transition-delay: 0.2s;
+        }
+
+        .stagger-3 {
+            transition-delay: 0.3s;
+        }
+
+        .stagger-4 {
+            transition-delay: 0.4s;
+        }
+
+        .stagger-5 {
+            transition-delay: 0.5s;
+        }
+
+        .stagger-6 {
+            transition-delay: 0.6s;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress"></div>
+
+    <!-- Navigation -->
+    <nav id="nav">
+        <div class="logo"><img src="media/Yenepoya Logo.svg" alt=""></div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#testimonials">Stories</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <button class="nav-cta">Apply Now</button>
+        <div class="mobile-menu" id="mobileMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+
+        <!-- Background Big Text -->
+        <div class="hero-bg-text">2025</div>
+
+        <div class="hero-container">
+
+            <!-- LEFT CONTENT -->
+            <div class="hero-content">
+                <span class="hero-tag">Admissions Open 2025-26</span>
+
+                <h1>Excellence in<br>Medical Education</h1>
+
+                <p class="hero-subtitle">
+                    Join India's premier institution for medical, dental, and allied health sciences.
+                    Where innovation meets tradition, and excellence becomes habit.
+                </p>
+
+                <div class="hero-cta-group">
+                    <a href="#" class="btn-primary">Explore Programs</a>
+                    <a href="#" class="btn-secondary">Admission Process</a>
+                </div>
+            </div>
+
+            <!-- RIGHT FORM -->
+            <div class="hero-form">
+                <form>
+                    <h3>Apply Now</h3>
+
+                    <div class="form-grid">
+                        <input type="text" placeholder="Full Name" required>
+                        <input type="email" placeholder="Email Address" required>
+                        <input type="tel" placeholder="Phone Number" required>
+                        <input type="text" placeholder="State" required>
+
+                        <select required>
+                            <option value="">Select Campus</option>
+                            <option>Yenepoya Campus</option>
+                            <option>Mangalore Campus</option>
+                            <option>Bangalore Campus</option>
+                        </select>
+
+                        <select required>
+                            <option value="">Select Course</option>
+                            <option>MBBS</option>
+                            <option>BDS</option>
+                            <option>B.Sc Nursing</option>
+                            <option>Allied Health Sciences</option>
+                        </select>
+                    </div>
+
+                    <textarea placeholder="Your Message"></textarea>
+
+                    <button type="submit">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <style>
+        /* HERO FORM (Awwwards Style) */
+        .hero-form {
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            width: 400px;
+            z-index: 20;
+        }
+
+        /* Glass Card */
+        .hero-form form {
+            background: rgba(255, 255, 255, 0.212);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 2rem;
+            /* border-radius: 20px; */
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Title */
+        .hero-form h3 {
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Grid */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        /* Inputs */
+        .hero-form input,
+        .hero-form select,
+        .hero-form textarea {
+            width: 100%;
+            padding: 12px 14px;
+            /* border-radius: 10px; */
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgb(255, 255, 255);
+            color: #141414;
+            font-size: 0.85rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        /* Full width textarea */
+        .hero-form textarea {
+            margin-top: 12px;
+            min-height: 80px;
+            resize: none;
+        }
+
+        /* Placeholder */
+        .hero-form input::placeholder,
+        .hero-form textarea::placeholder {
+            color: rgb(0, 0, 0);
+        }
+
+        /* Focus effect */
+        .hero-form input:focus,
+        .hero-form select:focus,
+        .hero-form textarea:focus {
+            border-color: #d4af37;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Button */
+        .hero-form button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 12px;
+            border: none;
+            /* border-radius: 10px; */
+            background: #d4af37;
+            color: #000;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* Hover */
+        .hero-form button:hover {
+            background: #fff;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero-form {
+                position: static;
+                width: 100%;
+                margin-top: 40px;
+                padding: 0 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+
+            background:
+                linear-gradient(120deg, rgba(10, 10, 10, 0.75), rgba(106, 106, 106, 0.35)),
+                url('media/InnerY.webp');
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* BIG BACKGROUND TEXT */
+        .hero-bg-text {
+            position: absolute;
+            font-family: 'Playfair Display', serif;
+            font-size: 18vw;
+            font-weight: 900;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        /* CONTAINER */
+        .hero-container {
+            width: 100%;
+            max-width: 1500px;
+            margin: auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            align-items: center;
+            gap: 60px;
+            z-index: 10;
+        }
+
+        /* LEFT CONTENT */
+        .hero-content {
+            color: #fff;
+        }
+
+        .hero-tag {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #d4af37;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        /* BUTTONS */
+        .hero-cta-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-primary {
+            background: #000;
+            color: #fff;
+            padding: 14px 28px;
+            text-transform: uppercase;
+        }
+
+        .btn-secondary {
+            background-color: rgb(102, 102, 102);
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 14px 28px;
+        }
+
+        /* FORM */
+        .hero-form form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-form h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        /* GRID */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        /* INPUTS */
+        .hero-form input,
+        .hero-form select,
+        .hero-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: #fff;
+        }
+
+        /* TEXTAREA */
+        .hero-form textarea {
+            margin-top: 10px;
+            min-height: 80px;
+        }
+
+        /* BUTTON */
+        .hero-form button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 12px;
+            background: #d4af37;
+            border: none;
+        }
+
+        /* SCROLL INDICATOR */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        /* Tablet */
+        @media (max-width: 992px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-cta-group {
+                justify-content: center;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 0;
+            }
+
+            .hero-container {
+                padding: 0 20px;
+                gap: 40px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+
+
+
+    <style>
+        :root {
+            --navy: #0d1b4b;
+            --cobalt: #1a3bbf;
+            --electric: #2f56ff;
+            --gold: #c9a227;
+            --gold-light: #f0d060;
+            --cream: #f8f6f0;
+            --white: #ffffff;
+            --muted: #6b7280;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --radius: 20px;
+            --transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+
+        /* ── SECTION ── */
+        .about-section {
+            position: relative;
+            overflow: hidden;
+            padding: 20px 24px 20px;
+            background:
+                white;
+        }
+
+        /* ── HEADING ── */
+        .about-label {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--electric);
+            background: rgba(47, 86, 255, 0.08);
+            border: 1px solid rgba(47, 86, 255, 0.2);
+            border-radius: 100px;
+            padding: 6px 18px;
+            margin-bottom: 20px;
+        }
+
+        .about-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4.5vw, 3.4rem);
+            font-weight: 900;
+            line-height: 1.12;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+
+        .about-heading span {
+            color: var(--electric);
+        }
+
+        .about-divider {
+            width: 64px;
+            height: 4px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--electric), var(--gold));
+            margin: 20px 0 28px;
+        }
+
+        .about-body {
+            font-size: clamp(0.95rem, 1.6vw, 1.08rem);
+            line-height: 1.8;
+            color: #3d4a6a;
+            font-weight: 300;
+            margin-bottom: 64px;
+        }
+
+        .about-body strong {
+            font-weight: 500;
+            color: var(--navy);
+        }
+
+        /* ── CAROUSEL WRAPPER ── */
+        .carousel-section-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .carousel-outer {
+            position: relative;
+        }
+
+        /* Track */
+        .carousel-track-wrap {
+            overflow: hidden;
+            border-radius: var(--radius);
+            background: var(--white);
+            border: 1px solid rgba(47, 86, 255, 0.09);
+            box-shadow:
+                0 4px 6px rgba(13, 27, 75, 0.04),
+                0 20px 60px rgba(13, 27, 75, 0.07);
+            padding: 36px 40px;
+            /* Fade edges */
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+        }
+
+        .carousel-track {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            will-change: transform;
+        }
+
+        /* Individual logo item */
+        .logo-item {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            padding: 0 32px;
+            cursor: default;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .logo-box {
+            width: 110px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--cream);
+            border-radius: 16px;
+            border: 1px solid rgba(47, 86, 255, 0.07);
+            padding: 14px;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .logo-item:hover .logo-box {
+            box-shadow: 0 8px 28px rgba(47, 86, 255, 0.12);
+            border-color: rgba(47, 86, 255, 0.18);
+        }
+
+        .logo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-name {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        /* Divider between logos */
+        .logo-sep {
+            width: 1px;
+            height: 60px;
+            background: rgba(47, 86, 255, 0.08);
+            flex-shrink: 0;
+        }
+
+
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .logo-box {
+                width: 88px;
+                height: 74px;
+                padding: 10px;
+            }
+
+            .logo-sep {
+                display: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .about-section {
+                padding: 56px 20px 56px;
+            }
+
+            .carousel-track-wrap {
+                padding: 28px 20px;
+            }
+
+            .carousel-btns {
+                left: -14px;
+                right: -14px;
+            }
+
+            .arrow-btn {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo-box {
+                width: 68px;
+                height: 60px;
+                padding: 8px;
+                border-radius: 12px;
+            }
+
+            .logo-name {
+                font-size: 9px;
+            }
+
+            .carousel-slide {
+                gap: 8px;
+            }
+        }
+
+        /* ── ENTRY ANIMATION ── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(28px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .about-label {
+            animation: fadeUp 0.6s ease both;
+        }
+
+        .about-heading {
+            animation: fadeUp 0.6s 0.1s ease both;
+        }
+
+        .about-divider {
+            animation: fadeUp 0.6s 0.2s ease both;
+        }
+
+        .about-body {
+            animation: fadeUp 0.6s 0.3s ease both;
+        }
+
+        .carousel-outer {
+            animation: fadeUp 0.7s 0.45s ease both;
+        }
+    </style>
+
+
+    <section class="about-section">
+        <div class="about-inner text-center">
+
+            <!-- Heading block -->
+            <span class="section-tag">About Us</span>
+            <h2 class="section-title">Why Choose Yenepoya University</h2>
+
+            <p class="about-body">
+                Yenepoya (Deemed-to-be University) was established with the primary objective of providing
+                quality higher education by integrating the latest methods of pedagogy and
+                modern principles of academia with the highest ethical standards. This approach aims to foster
+                individuals who can help extend the acquired knowledge to develop various communities and
+                society as a whole. Yenepoya University has earned several accolades — including
+                rankings, recognitions, and awards — for its comprehensive approach to
+                nurturing well-rounded students.
+            </p>
+
+            <!-- Carousel -->
+            <div class="carousel-section-label">Accreditations &amp; Rankings</div>
+
+            <div class="carousel-outer">
+
+
+                <div class="carousel-track-wrap">
+                    <div class="carousel-track" id="track">
+
+                        <div class="logo-item">
+                            <div class="logo-box"><img src="https://placehold.co/110x70?text=ARIIA" alt="ARIIA" /></div>
+                            <span class="logo-name">ARIIA</span>
+                        </div>
+                        <div class="logo-sep"></div>
+                        <div class="logo-item">
+                            <div class="logo-box"><img src="https://placehold.co/110x70?text=THE" alt="THE Rankings" />
+                            </div>
+                            <span class="logo-name">THE Rankings</span>
+                        </div>
+                        <div class="logo-sep"></div>
+                        <div class="logo-item">
+                            <div class="logo-box"><img src="https://placehold.co/110x70?text=KSURF" alt="KSURF" /></div>
+                            <span class="logo-name">KSURF</span>
+                        </div>
+                        <div class="logo-sep"></div>
+                        <div class="logo-item">
+                            <div class="logo-box"><img src="https://placehold.co/110x70?text=NABH" alt="NABH" /></div>
+                            <span class="logo-name">NABH</span>
+                        </div>
+                        <div class="logo-sep"></div>
+                        <div class="logo-item">
+                            <div class="logo-box"><img src="https://placehold.co/110x70?text=NABL" alt="NABL" /></div>
+                            <span class="logo-name">NABL</span>
+                        </div>
+
+                    </div><!-- /.carousel-track -->
+                </div><!-- /.carousel-track-wrap -->
+
+            </div><!-- /.carousel-outer -->
+
+        </div><!-- /.about-inner -->
+    </section>
+
+    <script>
+        const track = document.getElementById('track');
+        const outer = document.querySelector('.carousel-outer');
+        const prev = document.getElementById('prevBtn');
+        const next = document.getElementById('nextBtn');
+
+        const SPEED = 0.6;   // px per frame baseline
+        let offset = 0;
+        let paused = false;
+        let boost = 0;     // extra px/frame from arrow press
+        let halfW = 0;
+
+        // Clone all original children and append — creates seamless duplicate
+        function buildClone() {
+            const originals = Array.from(track.children);
+            originals.forEach(el => track.appendChild(el.cloneNode(true)));
+            halfW = track.scrollWidth / 2;
+        }
+
+        function tick() {
+            if (!paused) {
+                offset += SPEED + boost;
+                if (boost > 0) boost = Math.max(0, boost - 0.06);
+                if (boost < 0) boost = Math.min(0, boost + 0.06);
+                // Reset seamlessly when we've scrolled exactly one full set width
+                if (offset >= halfW) offset -= halfW;
+                if (offset < 0) offset += halfW;
+                track.style.transform = `translateX(${-offset}px)`;
+            }
+            requestAnimationFrame(tick);
+        }
+
+        // Pause on hover
+        outer.addEventListener('mouseenter', () => paused = true);
+        outer.addEventListener('mouseleave', () => paused = false);
+
+
+        // Swipe
+        let tx = 0;
+        track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; paused = true; }, { passive: true });
+        track.addEventListener('touchend', e => {
+            const dx = e.changedTouches[0].clientX - tx;
+            boost += -dx * 0.12;
+            paused = false;
+        });
+
+        // Keyboard
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowLeft') boost -= 4;
+            if (e.key === 'ArrowRight') boost += 4;
+        });
+
+        buildClone();
+        requestAnimationFrame(tick);
+    </script>
+
+
+
+
+    <section class="campus-section">
+        <div class="container">
+            <span class="section-tag">About Us</span>
+            <h2 class="section-title">Why Choose Yenepoya University</h2>
+
+            <!-- ROW 1 (IMAGE LEFT) -->
+            <div class="row campus-row">
+
+                <!-- IMAGE -->
+                <div class="col-lg-6">
+                    <div class="campus-media">
+                        <img src="media/Academic Blocks.webp" alt="Campus">
+
+                        <div class="media-overlay">
+                            <div class="overlay-inner">
+                                <span class="tag">Bangalore Campus</span>
+                                <h4 class="title">Bhartiya City</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTENT -->
+                <div class="col-lg-6 position-relative">
+                    <div class="campus-content floating-card left-overlap">
+                        <h3>Yenepoya University, Bhartiya City</h3>
+                        <p>
+                            The Yenepoya University Bangalore Campus is a constituent unit of Yenepoya (Deemed-to-be
+                            University). Established in 2023, it is located in one of Bangalore’s most elite areas,
+                            Bhartiya City. The university offers courses in various fields of study, including computer
+                            science, applied science, commerce and management, allied health, and more, in collaboration
+                            with acclaimed industry partners and reputed institutes. It also utilises innovative
+                            learning strategies to promote experiential learning. Additionally, the campus is equipped
+                            with smart classrooms, laboratories, libraries, student learning zones, and more.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- ROW 2 (TEXT LEFT, IMAGE RIGHT) -->
+            <div class="row campus-row">
+
+                <!-- CONTENT -->
+                <div class="col-lg-6 position-relative">
+                    <div class="campus-content floating-card right-overlap">
+                        <h3>Yenepoya University, Mangalore</h3>
+                        <p>
+                            The Yenepoya University Bangalore Campus is a constituent unit of Yenepoya (Deemed-to-be
+                            University). Established in 2023, it is located in one of Bangalore’s most elite areas,
+                            Bhartiya City. The university offers courses in various fields of study, including computer
+                            science, applied science, commerce and management, allied health, and more, in collaboration
+                            with acclaimed industry partners and reputed institutes. It also utilises innovative
+                            learning strategies to promote experiential learning. Additionally, the campus is equipped
+                            with smart classrooms, laboratories, libraries, student learning zones, and more.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- IMAGE -->
+                <div class="col-lg-6">
+                    <div class="campus-media">
+                        <img src="media/Academic Blocks.webp" alt="Campus">
+
+                        <div class="media-overlay">
+                            <div class="overlay-inner">
+                                <span class="tag">Main Campus</span>
+                                <h4 class="title">Mangalore</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <style>
+        /* SECTION */
+        .campus-section {
+            padding: 90px 0;
+            background: #f8fafc;
+        }
+
+        /* ROW */
+        .campus-row {
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        /* IMAGE CARD */
+        .campus-media {
+            position: relative;
+            /* border-radius: 24px; */
+            overflow: hidden;
+            height: 390px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+        }
+
+        /* IMAGE */
+        .campus-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s ease;
+        }
+
+        /* SOFT LIGHT OVERLAY */
+        .campus-media::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top,
+                    rgba(0, 0, 0, 0.698),
+                    rgba(0, 0, 0, 0.1),
+                    transparent);
+        }
+
+        /* HOVER ZOOM */
+        .campus-media:hover img {
+            transform: scale(1.08);
+        }
+
+        /* TEXT OVER IMAGE */
+        .media-overlay {
+            position: absolute;
+            bottom: 5px;
+            left: 40%;
+            z-index: 2;
+        }
+
+        .overlay-inner {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 12px;
+        }
+
+        /* TAG */
+        .media-overlay .tag {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: #d4af37;
+            text-transform: uppercase;
+        }
+
+        /* TITLE */
+        .media-overlay .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-top: 5px;
+            color: #fff;
+        }
+
+        /* CONTENT CARD */
+        .floating-card {
+            background: #e9e9e9;
+            padding: 30px;
+            /* border-radius: 24px; */
+            /* border: 2px solid rgba(0, 0, 0, 0.586); */
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            position: relative;
+            z-index: 3;
+            transition: 0.4s ease;
+        }
+
+        /* LEFT OVERLAP */
+        .left-overlap {
+            left: -80px;
+        }
+
+        /* RIGHT OVERLAP */
+        .right-overlap {
+            right: -80px;
+        }
+
+        /* TEXT */
+        .campus-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #0f172a;
+        }
+
+        .campus-content p {
+            color: #343434;
+            line-height: 1.6;
+        }
+
+        /* HOVER */
+        .floating-card:hover {
+            transform: translateY(-12px);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 991px) {
+
+            .campus-media {
+                height: 300px;
+            }
+
+            .floating-card {
+                left: 0 !important;
+                right: 0 !important;
+                margin-top: -60px;
+                padding: 25px;
+            }
+
+            .campus-content h3 {
+                font-size: 1.5rem;
+            }
+
+            .campus-row {
+                margin-bottom: 80px;
+            }
+        }
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- About / Features -->
+    <section class="section" id="about">
+        <div class="section-number">01</div>
+        <div class="section-header reveal">
+            <span class="section-tag">About Us</span>
+            <h2 class="section-title">Why Choose Yenepoya University</h2>
+            <p class="section-description">Where cutting-edge medical education meets compassionate care, creating
+                healthcare leaders who transform communities.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature reveal stagger-1">
+                <div class="feature-number">01</div>
+                <h3 class="feature-title">Academic Excellence</h3>
+                <p class="feature-description">Globally recognized curriculum designed by industry leaders, ensuring
+                    world-class education that prepares you for international practice.</p>
+            </div>
+            <div class="feature reveal stagger-2">
+                <div class="feature-number">02</div>
+                <h3 class="feature-title">State-of-the-Art Infrastructure</h3>
+                <p class="feature-description">Modern laboratories, advanced simulation centers, and fully-equipped 600+
+                    bed teaching hospital for comprehensive clinical training.</p>
+            </div>
+            <div class="feature reveal stagger-3">
+                <div class="feature-number">03</div>
+                <h3 class="feature-title">Expert Faculty</h3>
+                <p class="feature-description">Learn from distinguished professors and experienced clinicians who bring
+                    decades of expertise and research to every lecture.</p>
+            </div>
+            <div class="feature reveal stagger-4">
+                <div class="feature-number">04</div>
+                <h3 class="feature-title">Global Recognition</h3>
+                <p class="feature-description">Our degrees are recognized internationally, with partnerships at leading
+                    institutions opening doors worldwide.</p>
+            </div>
+            <div class="feature reveal stagger-5">
+                <div class="feature-number">05</div>
+                <h3 class="feature-title">Career Excellence</h3>
+                <p class="feature-description">Dedicated placement cell with 95% success rate, industry connections, and
+                    comprehensive career counseling services.</p>
+            </div>
+            <div class="feature reveal stagger-6">
+                <div class="feature-number">06</div>
+                <h3 class="feature-title">Research Innovation</h3>
+                <p class="feature-description">Engage in groundbreaking research with access to modern facilities and
+                    mentorship from leading researchers.</p>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <style>
+        :root {
+            --navy: #0d2340;
+            --teal: #1a4a5e;
+            --green: #2c5f2e;
+            --green-l: #3a7d3c;
+            --gold: #f5c518;
+            --sky: #3ab5e6;
+            --white: #ffffff;
+            --cream: #f4f7f9;
+            --muted: #6b7f91;
+            --border: rgba(255, 255, 255, 0.12);
+            --radius: 14px;
+            --trans: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ── PAGE WRAPPER ── */
+        .section-wrap {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 56px 24px 80px;
+        }
+
+        /* ── SECTION LABEL + HEADING ── */
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--sky);
+            margin-bottom: 10px;
+        }
+
+        .section-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 900;
+            color: var(--navy);
+            margin-bottom: 36px;
+            line-height: 1.15;
+        }
+
+        .section-heading span {
+            color: var(--green-l);
+        }
+
+        /* ── CAMPUS TABS ── */
+        .campus-tabs {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .campus-tab {
+            flex: 1;
+            min-width: 200px;
+            padding: 18px 24px;
+            border-radius: var(--radius);
+            border: 2px solid transparent;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-align: center;
+            transition: all var(--trans);
+            line-height: 1.4;
+        }
+
+        .campus-tab.active {
+            background: var(--green);
+            color: var(--white);
+            border-color: var(--green);
+            box-shadow: 0 6px 24px rgba(44, 95, 46, 0.3);
+        }
+
+        .campus-tab:not(.active) {
+            background: var(--white);
+            color: var(--navy);
+            border-color: #d0dbe3;
+        }
+
+        .campus-tab:not(.active):hover {
+            border-color: var(--green-l);
+            color: var(--green-l);
+            box-shadow: 0 4px 16px rgba(44, 95, 46, 0.1);
+        }
+
+        /* ── LAYOUT: SIDEBAR + CARDS ── */
+        .courses-layout {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+        }
+
+        /* ── SIDEBAR ── */
+        .sidebar {
+            flex: 0 0 190px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sidebar-btn {
+            background: var(--white);
+            border: 1.5px solid #d8e3eb;
+            border-radius: 10px;
+            padding: 14px 16px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--muted);
+            cursor: pointer;
+            text-align: left;
+            transition: all var(--trans);
+            line-height: 1.4;
+            position: relative;
+        }
+
+        .sidebar-btn::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 0;
+            background: var(--green-l);
+            border-radius: 0 3px 3px 0;
+            transition: height var(--trans);
+        }
+
+        .sidebar-btn.active {
+            background: var(--navy);
+            border-color: var(--navy);
+            color: var(--white);
+            box-shadow: 0 4px 14px rgba(13, 35, 64, 0.18);
+        }
+
+        .sidebar-btn.active::before {
+            height: 60%;
+        }
+
+        .sidebar-btn:not(.active):hover {
+            border-color: var(--green-l);
+            color: var(--green-l);
+        }
+
+        /* ── CARDS AREA ── */
+        .cards-area {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* Campus panel */
+        .campus-panel {
+            display: none;
+        }
+
+        .campus-panel.active {
+            display: block;
+        }
+
+        /* Category panel */
+        .category-panel {
+            display: none;
+        }
+
+        .category-panel.active {
+            display: grid;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        /* ── COURSE CARD ── */
+        .course-card {
+            background: var(--navy);
+            border-radius: var(--radius);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+
+            box-shadow: 0 4px 20px rgba(13, 35, 64, 0.15);
+            transition: transform var(--trans), box-shadow var(--trans);
+        }
+
+        .course-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(13, 35, 64, 0.25);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            display: block;
+            flex-shrink: 0;
+        }
+
+        .card-body {
+            flex: 1;
+            padding: 18px 20px 0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .card-header-title {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .card-abbr {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 2px;
+        }
+
+        .card-duration {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--sky);
+            line-height: 1;
+        }
+
+        .card-years {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        .card-specs-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 6px;
+        }
+
+        .card-specs {
+            list-style: none;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .card-specs li {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+            padding-left: 12px;
+            position: relative;
+            margin-bottom: 3px;
+        }
+
+        .card-specs li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--sky);
+        }
+
+        .card-footer {
+            padding: 14px 20px 18px;
+            flex-shrink: 0;
+        }
+
+        .apply-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: var(--sky);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            transition: background var(--trans), transform var(--trans);
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .apply-btn:hover {
+            background: #2a9fd4;
+            transform: translateY(-1px);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .courses-layout {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                flex-direction: row;
+                flex-wrap: wrap;
+                flex: none;
+                width: 100%;
+            }
+
+            .sidebar-btn {
+                flex: 1;
+                min-width: 120px;
+                text-align: center;
+                font-size: 0.72rem;
+            }
+
+            .sidebar-btn::before {
+                display: none;
+            }
+
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .course-card {
+                height: auto;
+            }
+
+            .card-img {
+                height: 120px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .campus-tabs {
+                flex-direction: column;
+            }
+
+            .campus-tab {
+                min-width: unset;
+            }
+        }
+
+        
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .category-panel.active .course-card {
+            animation: fadeSlideUp 0.35s ease both;
+        }
+
+        .category-panel.active .course-card:nth-child(2) {
+            animation-delay: 0.07s;
+        }
+
+        .category-panel.active .course-card:nth-child(3) {
+            animation-delay: 0.14s;
+        }
+    </style>
+
+    <div class="section-wrap">
+
+        <div class="section-label">Explore Programmes</div>
+        <h2 class="section-heading">Courses at <span>Yenepoya</span><br>Deemed-to-be University</h2>
+
+        <!-- ── CAMPUS TABS ── -->
+        <div class="campus-tabs">
+            <button class="campus-tab active" onclick="switchCampus('bangalore')">
+                Yenepoya (Deemed-to-be University),<br>Bangalore
+            </button>
+            <button class="campus-tab" onclick="switchCampus('mangalore')">
+                Yenepoya (Deemed-to-be University),<br>Mangalore
+            </button>
+        </div>
+
+        <!-- ── CAMPUS: BANGALORE ── -->
+        <div class="campus-panel active" id="campus-bangalore">
+            <div class="courses-layout">
+
+                <!-- Sidebar -->
+                <div class="sidebar" id="sidebar-bangalore">
+                    <button class="sidebar-btn active" onclick="switchCategory('bangalore','business')">Business &amp;
+                        Management</button>
+                    <button class="sidebar-btn" onclick="switchCategory('bangalore','science')">Science</button>
+                    <button class="sidebar-btn" onclick="switchCategory('bangalore','cs')">Computer Science &amp;
+                        IT</button>
+                    <button class="sidebar-btn" onclick="switchCategory('bangalore','commerce')">Commerce &amp;
+                        Finance</button>
+                    <button class="sidebar-btn" onclick="switchCategory('bangalore','health')">Allied Health</button>
+                </div>
+
+                <!-- Cards Area -->
+                <div class="cards-area" id="area-bangalore">
+
+                    <!-- Business & Management -->
+                    <div class="category-panel active cards-grid" id="bangalore-business">
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/1a4a5e/ffffff?text=BBA+Programme"
+                                alt="BBA" />
+                            <div class="card-body">
+                                <div class="card-header-title">Bachelor of Business Administration</div>
+                                <div class="card-abbr">BBA</div>
+                                <div class="card-duration">3</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Logistics and Aviation – Microsoft</li>
+                                    <li>Logistics &amp; Supply Chain with Port Management</li>
+                                    <li>Entrepreneurship &amp; Innovation with Business Analytics</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                        <div class="course-card">
+                            <img class="card-img"
+                                src="https://placehold.co/400x140/0d2340/ffffff?text=BBA+International"
+                                alt="BBA International" />
+                            <div class="card-body">
+                                <div class="card-header-title">Bachelor of Business Administration</div>
+                                <div class="card-abbr">BBA</div>
+                                <div class="card-duration">4</div>
+                                <div class="card-years">Years (International)</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Integrated Agriculture Business Management</li>
+                                    <li>Business Studies</li>
+                                    <li>International Business Management</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/2c5f2e/ffffff?text=MHA+Programme"
+                                alt="MHA" />
+                            <div class="card-body">
+                                <div class="card-header-title">Masters in Hospital Administration</div>
+                                <div class="card-abbr">MHA</div>
+                                <div class="card-duration">2</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Quality Management in Healthcare</li>
+                                    <li>Operations Management in Healthcare</li>
+                                    <li>Medical Tourism &amp; Health Management</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                    </div>
+
+                    <!-- Science -->
+                    <div class="category-panel cards-grid" id="bangalore-science">
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/1a4a5e/ffffff?text=B.Sc+Programme"
+                                alt="BSc" />
+                            <div class="card-body">
+                                <div class="card-header-title">Bachelor of Science</div>
+                                <div class="card-abbr">B.Sc</div>
+                                <div class="card-duration">3</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Biotechnology</li>
+                                    <li>Microbiology</li>
+                                    <li>Biochemistry</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/0d2340/ffffff?text=M.Sc+Programme"
+                                alt="MSc" />
+                            <div class="card-body">
+                                <div class="card-header-title">Master of Science</div>
+                                <div class="card-abbr">M.Sc</div>
+                                <div class="card-duration">2</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Clinical Research</li>
+                                    <li>Bioinformatics</li>
+                                    <li>Forensic Science</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/2c5f2e/ffffff?text=Ph.D+Programme"
+                                alt="PhD" />
+                            <div class="card-body">
+                                <div class="card-header-title">Doctor of Philosophy</div>
+                                <div class="card-abbr">Ph.D</div>
+                                <div class="card-duration">3–5</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Life Sciences</li>
+                                    <li>Pharmaceutical Sciences</li>
+                                    <li>Medical Sciences</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                    </div>
+
+                    <!-- CS & IT -->
+                    <div class="category-panel cards-grid" id="bangalore-cs">
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/1a4a5e/ffffff?text=BCA+Programme"
+                                alt="BCA" />
+                            <div class="card-body">
+                                <div class="card-header-title">Bachelor of Computer Applications</div>
+                                <div class="card-abbr">BCA</div>
+                                <div class="card-duration">3</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Artificial Intelligence &amp; ML</li>
+                                    <li>Cybersecurity</li>
+                                    <li>Cloud Computing</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/0d2340/ffffff?text=MCA+Programme"
+                                alt="MCA" />
+                            <div class="card-body">
+                                <div class="card-header-title">Master of Computer Applications</div>
+                                <div class="card-abbr">MCA</div>
+                                <div class="card-duration">2</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Data Science</li>
+                                    <li>Full Stack Development</li>
+                                    <li>Internet of Things</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/2c5f2e/ffffff?text=B.Tech+Programme"
+                                alt="BTech" />
+                            <div class="card-body">
+                                <div class="card-header-title">Bachelor of Technology</div>
+                                <div class="card-abbr">B.Tech</div>
+                                <div class="card-duration">4</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Computer Science Engineering</li>
+                                    <li>AI &amp; Data Engineering</li>
+                                    <li>Information Technology</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                    </div>
+
+                    <!-- Commerce & Finance -->
+                    <div class="category-panel cards-grid" id="bangalore-commerce">
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/1a4a5e/ffffff?text=B.Com+Programme"
+                                alt="BCom" />
+                            <div class="card-body">
+                                <div class="card-header-title">Bachelor of Commerce</div>
+                                <div class="card-abbr">B.Com</div>
+                                <div class="card-duration">3</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Accounting &amp; Taxation</li>
+                                    <li>Banking &amp; Insurance</li>
+                                    <li>Finance &amp; Investment</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/0d2340/ffffff?text=MBA+Finance"
+                                alt="MBA Finance" />
+                            <div class="card-body">
+                                <div class="card-header-title">Master of Business Administration</div>
+                                <div class="card-abbr">MBA</div>
+                                <div class="card-duration">2</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Financial Management</li>
+                                    <li>International Finance</li>
+                                    <li>FinTech &amp; Digital Banking</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/2c5f2e/ffffff?text=M.Com+Programme"
+                                alt="MCom" />
+                            <div class="card-body">
+                                <div class="card-header-title">Master of Commerce</div>
+                                <div class="card-abbr">M.Com</div>
+                                <div class="card-duration">2</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Advanced Accounting</li>
+                                    <li>Corporate Finance</li>
+                                    <li>Business Economics</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                    </div>
+
+                    <!-- Allied Health -->
+                    <div class="category-panel cards-grid" id="bangalore-health">
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/1a4a5e/ffffff?text=B.Sc+Nursing"
+                                alt="Nursing" />
+                            <div class="card-body">
+                                <div class="card-header-title">Bachelor of Science in Nursing</div>
+                                <div class="card-abbr">B.Sc</div>
+                                <div class="card-duration">4</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Community Health Nursing</li>
+                                    <li>Critical Care Nursing</li>
+                                    <li>Paediatric Nursing</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/0d2340/ffffff?text=B.Pharm"
+                                alt="BPharm" />
+                            <div class="card-body">
+                                <div class="card-header-title">Bachelor of Pharmacy</div>
+                                <div class="card-abbr">B.Pharm</div>
+                                <div class="card-duration">4</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Clinical Pharmacy</li>
+                                    <li>Pharmaceutical Chemistry</li>
+                                    <li>Pharmacology</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/2c5f2e/ffffff?text=BMLT"
+                                alt="BMLT" />
+                            <div class="card-body">
+                                <div class="card-header-title">Bachelor of Medical Lab Technology</div>
+                                <div class="card-abbr">BMLT</div>
+                                <div class="card-duration">3</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Haematology</li>
+                                    <li>Clinical Biochemistry</li>
+                                    <li>Microbiology &amp; Serology</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                    </div>
+
+                </div><!-- /cards-area bangalore -->
+            </div>
+        </div><!-- /campus-bangalore -->
+
+        <!-- ── CAMPUS: MANGALORE ── -->
+        <div class="campus-panel" id="campus-mangalore">
+            <div class="courses-layout">
+
+                <!-- Sidebar -->
+                <div class="sidebar" id="sidebar-mangalore">
+                    <button class="sidebar-btn active" onclick="switchCategory('mangalore','business')">Business &amp;
+                        Management</button>
+                    <button class="sidebar-btn" onclick="switchCategory('mangalore','science')">Science</button>
+                    <button class="sidebar-btn" onclick="switchCategory('mangalore','cs')">Computer Science &amp;
+                        IT</button>
+                    <button class="sidebar-btn" onclick="switchCategory('mangalore','commerce')">Commerce &amp;
+                        Finance</button>
+                    <button class="sidebar-btn" onclick="switchCategory('mangalore','health')">Allied Health</button>
+                </div>
+
+                <!-- Cards Area -->
+                <div class="cards-area" id="area-mangalore">
+
+                    <!-- Business & Management -->
+                    <div class="category-panel active cards-grid" id="mangalore-business">
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/1a4a5e/ffffff?text=MBA+Mangalore"
+                                alt="MBA" />
+                            <div class="card-body">
+                                <div class="card-header-title">Master of Business Administration</div>
+                                <div class="card-abbr">MBA</div>
+                                <div class="card-duration">2</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Marketing Management</li>
+                                    <li>Human Resource Management</li>
+                                    <li>Operations &amp; Supply Chain</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/0d2340/ffffff?text=BBA+Mangalore"
+                                alt="BBA Mangalore" />
+                            <div class="card-body">
+                                <div class="card-header-title">Bachelor of Business Administration</div>
+                                <div class="card-abbr">BBA</div>
+                                <div class="card-duration">3</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Digital Marketing</li>
+                                    <li>Retail Management</li>
+                                    <li>Event Management</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/2c5f2e/ffffff?text=PGDM"
+                                alt="PGDM" />
+                            <div class="card-body">
+                                <div class="card-header-title">Post Graduate Diploma in Management</div>
+                                <div class="card-abbr">PGDM</div>
+                                <div class="card-duration">1</div>
+                                <div class="card-years">Year</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Business Strategy</li>
+                                    <li>Leadership &amp; Innovation</li>
+                                    <li>Entrepreneurship</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                    </div>
+
+                    <!-- Science -->
+                    <div class="category-panel cards-grid" id="mangalore-science">
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/1a4a5e/ffffff?text=B.Sc+Mangalore"
+                                alt="BSc Mangalore" />
+                            <div class="card-body">
+                                <div class="card-header-title">Bachelor of Science</div>
+                                <div class="card-abbr">B.Sc</div>
+                                <div class="card-duration">3</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Physics &amp; Mathematics</li>
+                                    <li>Chemistry</li>
+                                    <li>Environmental Science</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/0d2340/ffffff?text=M.Sc+Mangalore"
+                                alt="MSc Mangalore" />
+                            <div class="card-body">
+                                <div class="card-header-title">Master of Science</div>
+                                <div class="card-abbr">M.Sc</div>
+                                <div class="card-duration">2</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Organic Chemistry</li>
+                                    <li>Marine Biology</li>
+                                    <li>Applied Physics</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/2c5f2e/ffffff?text=B.Sc+Agriculture"
+                                alt="BSc Agriculture" />
+                            <div class="card-body">
+                                <div class="card-header-title">Bachelor of Science in Agriculture</div>
+                                <div class="card-abbr">B.Sc</div>
+                                <div class="card-duration">4</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Agronomy</li>
+                                    <li>Soil Science</li>
+                                    <li>Plant Pathology</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                    </div>
+
+                    <!-- CS & IT -->
+                    <div class="category-panel cards-grid" id="mangalore-cs">
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/1a4a5e/ffffff?text=BCA+Mangalore"
+                                alt="BCA Mangalore" />
+                            <div class="card-body">
+                                <div class="card-header-title">Bachelor of Computer Applications</div>
+                                <div class="card-abbr">BCA</div>
+                                <div class="card-duration">3</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Web Development</li>
+                                    <li>Mobile App Development</li>
+                                    <li>Database Management</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/0d2340/ffffff?text=MCA+Mangalore"
+                                alt="MCA Mangalore" />
+                            <div class="card-body">
+                                <div class="card-header-title">Master of Computer Applications</div>
+                                <div class="card-abbr">MCA</div>
+                                <div class="card-duration">2</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Software Engineering</li>
+                                    <li>Network Security</li>
+                                    <li>Machine Learning</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/2c5f2e/ffffff?text=Diploma+IT"
+                                alt="Diploma IT" />
+                            <div class="card-body">
+                                <div class="card-header-title">Diploma in Information Technology</div>
+                                <div class="card-abbr">DIT</div>
+                                <div class="card-duration">1</div>
+                                <div class="card-years">Year</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Cloud Infrastructure</li>
+                                    <li>UI/UX Design</li>
+                                    <li>Digital Transformation</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                    </div>
+
+                    <!-- Commerce & Finance -->
+                    <div class="category-panel cards-grid" id="mangalore-commerce">
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/1a4a5e/ffffff?text=B.Com+Mangalore"
+                                alt="BCom Mangalore" />
+                            <div class="card-body">
+                                <div class="card-header-title">Bachelor of Commerce</div>
+                                <div class="card-abbr">B.Com</div>
+                                <div class="card-duration">3</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Cost Accounting</li>
+                                    <li>Auditing &amp; Taxation</li>
+                                    <li>E-Commerce</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/0d2340/ffffff?text=CMA+Programme"
+                                alt="CMA" />
+                            <div class="card-body">
+                                <div class="card-header-title">Certified Management Accountant</div>
+                                <div class="card-abbr">CMA</div>
+                                <div class="card-duration">2</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Management Accounting</li>
+                                    <li>Strategic Finance</li>
+                                    <li>Risk Management</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/2c5f2e/ffffff?text=M.Com+Mangalore"
+                                alt="MCom Mangalore" />
+                            <div class="card-body">
+                                <div class="card-header-title">Master of Commerce</div>
+                                <div class="card-abbr">M.Com</div>
+                                <div class="card-duration">2</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Financial Analysis</li>
+                                    <li>International Trade</li>
+                                    <li>Taxation Law</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                    </div>
+
+                    <!-- Allied Health -->
+                    <div class="category-panel cards-grid" id="mangalore-health">
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/1a4a5e/ffffff?text=MBBS"
+                                alt="MBBS" />
+                            <div class="card-body">
+                                <div class="card-header-title">Bachelor of Medicine & Surgery</div>
+                                <div class="card-abbr">MBBS</div>
+                                <div class="card-duration">5.5</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>General Medicine</li>
+                                    <li>Surgery</li>
+                                    <li>Obstetrics &amp; Gynaecology</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/0d2340/ffffff?text=BDS" alt="BDS" />
+                            <div class="card-body">
+                                <div class="card-header-title">Bachelor of Dental Surgery</div>
+                                <div class="card-abbr">BDS</div>
+                                <div class="card-duration">5</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Orthodontics</li>
+                                    <li>Oral &amp; Maxillofacial Surgery</li>
+                                    <li>Prosthodontics</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                        <div class="course-card">
+                            <img class="card-img" src="https://placehold.co/400x140/2c5f2e/ffffff?text=M.Sc+Nursing"
+                                alt="MSc Nursing" />
+                            <div class="card-body">
+                                <div class="card-header-title">Master of Science in Nursing</div>
+                                <div class="card-abbr">M.Sc</div>
+                                <div class="card-duration">2</div>
+                                <div class="card-years">Years</div>
+                                <div class="card-specs-label">Specialisations:</div>
+                                <ul class="card-specs">
+                                    <li>Medical Surgical Nursing</li>
+                                    <li>Psychiatric Nursing</li>
+                                    <li>Community Health Nursing</li>
+                                </ul>
+                            </div>
+                            <div class="card-footer"><a class="apply-btn" href="#">Apply Now</a></div>
+                        </div>
+                    </div>
+
+                </div><!-- /cards-area mangalore -->
+            </div>
+        </div><!-- /campus-mangalore -->
+
+    </div><!-- /section-wrap -->
+
+    <script>
+        function switchCampus(campus) {
+            // Update tab buttons
+            document.querySelectorAll('.campus-tab').forEach((t, i) => {
+                t.classList.toggle('active', (i === 0 && campus === 'bangalore') || (i === 1 && campus === 'mangalore'));
+            });
+            // Show correct campus panel
+            document.querySelectorAll('.campus-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById('campus-' + campus).classList.add('active');
+        }
+
+        function switchCategory(campus, category) {
+            // Update sidebar buttons for this campus
+            const sidebar = document.getElementById('sidebar-' + campus);
+            sidebar.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            // Show correct category panel
+            const area = document.getElementById('area-' + campus);
+            area.querySelectorAll('.category-panel').forEach(p => p.classList.remove('active'));
+            const target = document.getElementById(campus + '-' + category);
+            if (target) target.classList.add('active');
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Process Timeline -->
+    <section class="section process-section" id="process">
+        <div class="section-number">03</div>
+        <div class="section-header reveal">
+            <span class="section-tag">Admission Process</span>
+            <h2 class="section-title">Your Journey Starts Here</h2>
+            <p class="section-description">A transparent, streamlined process designed to make your admission experience
+                seamless.</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-number">01</div>
+                <div class="timeline-content">
+                    <h3>Application Submission</h3>
+                    <p>Complete our comprehensive online application with personal details, academic qualifications, and
+                        program preferences. Upload all required documentation including mark sheets and certificates.
+                    </p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-number">02</div>
+                <div class="timeline-content">
+                    <h3>Entrance Examination</h3>
+                    <p>Appear for NEET or relevant entrance examinations based on your chosen program. We accept scores
+                        from national and state-level examinations.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-number">03</div>
+                <div class="timeline-content">
+                    <h3>Counseling Process</h3>
+                    <p>Attend counseling sessions either in person or online. Our expert admission team guides you
+                        through program selection and seat allocation based on your performance.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-number">04</div>
+                <div class="timeline-content">
+                    <h3>Document Verification</h3>
+                    <p>Submit original documents for verification including educational certificates, identity proof,
+                        and medical fitness certificate at our campus.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-number">05</div>
+                <div class="timeline-content">
+                    <h3>Enrollment & Fee Payment</h3>
+                    <p>Complete the fee payment process and finalize your enrollment. Receive your student ID and gain
+                        access to university facilities and resources.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section testimonials-section" id="testimonials">
+        <div class="section-number">04</div>
+        <div class="section-header reveal">
+            <span class="section-tag">Student Stories</span>
+            <h2 class="section-title">Voices of Excellence</h2>
+            <p class="section-description">Hear from our successful graduates and current students about their
+                transformative journey.</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial reveal stagger-1">
+                <p class="testimonial-quote">"The quality of education and practical training I received was
+                    exceptional. The faculty's dedication and world-class infrastructure shaped my career."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">RS</div>
+                    <div class="author-info">
+                        <h4>Rahul Sharma</h4>
+                        <p>MBBS Graduate, 2023</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial reveal stagger-2">
+                <p class="testimonial-quote">"The hands-on clinical experience during my nursing program prepared me
+                    perfectly for my career. Modern teaching methods made all the difference."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">PK</div>
+                    <div class="author-info">
+                        <h4>Priya Kumar</h4>
+                        <p>B.Sc Nursing, 2024</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial reveal stagger-3">
+                <p class="testimonial-quote">"Excellent exposure to research and industry collaborations. The placement
+                    support helped me secure a position at a leading pharmaceutical company."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AN</div>
+                    <div class="author-info">
+                        <h4>Arun Nair</h4>
+                        <p>B.Pharm Graduate, 2023</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq-section" id="faq">
+        <div class="section-number">05</div>
+        <div class="section-header reveal">
+            <span class="section-tag">FAQ</span>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq reveal stagger-1">
+                <div class="faq-question">
+                    <span>What are the eligibility criteria for MBBS admission?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Candidates must have completed 10+2 with Physics, Chemistry, Biology, and English with a minimum
+                        of 50% aggregate marks. NEET qualification is mandatory with the required cutoff score as per
+                        government norms.
+                    </div>
+                </div>
+            </div>
+            <div class="faq reveal stagger-2">
+                <div class="faq-question">
+                    <span>Does Yenepoya University provide hostel facilities?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Yes, we provide separate hostel facilities for boys and girls with modern amenities including
+                        Wi-Fi, mess facilities, common rooms, and 24/7 security. Accommodation is available on a
+                        first-come, first-served basis.
+                    </div>
+                </div>
+            </div>
+            <div class="faq reveal stagger-3">
+                <div class="faq-question">
+                    <span>What is the fee structure for different programs?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Fee structure varies by program. MBBS fees range from ₹18-20 lakhs per year, BDS from ₹10-12
+                        lakhs per year, and allied health programs from ₹1-3 lakhs per year. Detailed fee structure is
+                        available in our prospectus.
+                    </div>
+                </div>
+            </div>
+            <div class="faq reveal stagger-4">
+                <div class="faq-question">
+                    <span>Are scholarships available for students?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Yes, we offer merit-based scholarships and financial assistance to deserving students.
+                        Scholarships range from 10% to 50% tuition fee waiver based on academic performance and entrance
+                        exam scores.
+                    </div>
+                </div>
+            </div>
+            <div class="faq reveal stagger-5">
+                <div class="faq-question">
+                    <span>What are the placement opportunities after graduation?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        We have a dedicated placement cell with partnerships at leading hospitals, pharmaceutical
+                        companies, and healthcare organizations. Our placement rate exceeds 95% with attractive
+                        packages. We also support higher education pursuits abroad.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Begin Your Journey to Excellence</h2>
+        <p>Join thousands of successful students transforming healthcare. Applications now open for 2025-26.</p>
+        <div class="hero-cta-group" style="justify-content: center;">
+            <a href="#" class="btn-primary">Apply Now</a>
+            <a href="#" class="btn-secondary" style="border-color: var(--noir); color: var(--noir);">Download
+                Brochure</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>Yenepoya University</h3>
+                <p>Empowering students with world-class education in medical and health sciences. Building tomorrow's
+                    healthcare leaders today.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">f</a>
+                    <a href="#" class="social-link">t</a>
+                    <a href="#" class="social-link">in</a>
+                    <a href="#" class="social-link">ig</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#programs">Programs</a></li>
+                    <li><a href="#process">Admissions</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Programs</h4>
+                <ul class="footer-links">
+                    <li><a href="#">MBBS</a></li>
+                    <li><a href="#">BDS</a></li>
+                    <li><a href="#">Nursing</a></li>
+                    <li><a href="#">Pharmacy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul class="footer-links">
+                    <li><a href="tel:+918242204668">+91 824 220 4668</a></li>
+                    <li><a href="mailto:admissions@yenepoya.edu.in">admissions@yenepoya.edu.in</a></li>
+                    <li><a href="#">Mangalore, Karnataka</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Yenepoya University. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" class="social-link">Privacy</a>
+                <a href="#" class="social-link">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+
+        let mouseX = 0, mouseY = 0;
+        let followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+        });
+
+        function animateFollower() {
+            const distX = mouseX - followerX;
+            const distY = mouseY - followerY;
+
+            followerX += distX * 0.1;
+            followerY += distY * 0.1;
+
+            cursorFollower.style.left = (followerX - 20) + 'px';
+            cursorFollower.style.top = (followerY - 20) + 'px';
+
+            requestAnimationFrame(animateFollower);
+        }
+        animateFollower();
+
+        // Scroll Progress
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.scroll-progress').style.width = scrolled + '%';
+        });
+
+        // Navbar Scroll
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Intersection Observer
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .timeline-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq').forEach(faq => {
+            const question = faq.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = faq.classList.contains('active');
+
+                document.querySelectorAll('.faq').forEach(item => {
+                    item.classList.remove('active');
+                });
+
+                if (!isActive) {
+                    faq.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Parallax Background Text
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const bgText = document.querySelector('.hero-bg-text');
+            if (bgText) {
+                bgText.style.transform = `translate(-50%, -50%) translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+
+</html>
