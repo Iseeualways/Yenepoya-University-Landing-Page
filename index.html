@@ -823,6 +823,83 @@
                     <!-- <a href="#" class="btn-primary">Apply Now</a> -->
                     <a href="#" class="btn-secondary"> Download Brochure</a>
                 </div>
+                <div class="stats mt-4">
+
+                    <div class="stat">
+                        <h2><span class="count" data-target="15000">0</span><span class="plus">+</span></h2>
+                        <p>Students</p>
+                    </div>
+
+                    <div class="stat">
+                        <h2><span class="count" data-target="11">0</span><span class="plus">+</span></h2>
+                        <p>Disciplines</p>
+                    </div>
+
+                    <div class="stat">
+                        <h2><span class="count" data-target="125">0</span><span class="plus">+</span></h2>
+                        <p>Programs</p>
+                    </div>
+
+                    <div class="stat">
+                        <h2><span class="count" data-target="600">0</span><span class="plus">+</span></h2>
+                        <p>Teachers</p>
+                    </div>
+
+                </div>
+
+                <style>
+                    .stats {
+                        display: flex;
+                        /* justify-content: center; */
+                        gap: 60px;
+                        flex-wrap: wrap;
+                        text-align: center;
+                    }
+
+                    .stat h2 {
+                        font-size: 2.5rem;
+                        font-weight: 500;
+                        color: #ffffff;
+                        margin-bottom: 5px;
+                        font-variant-numeric: tabular-nums;
+                    }
+
+                    .plus {
+                        color: #93d500;
+                    }
+
+                    .stat p {
+                        font-size: 0.9rem;
+                        color: #94979d;
+                    }
+                </style>
+
+                <script id="smooth-counter">
+                    const counters = document.querySelectorAll('.count');
+
+                    counters.forEach(counter => {
+                        const target = +counter.dataset.target;
+                        let current = 0;
+
+                        const duration = 3000; // total time
+                        const stepTime = 30; // ~60fps
+                        const totalSteps = duration / stepTime;
+                        const increment = target / totalSteps;
+
+                        function update() {
+                            current += increment;
+
+                            if (current < target) {
+                                counter.textContent = Math.floor(current);
+                                requestAnimationFrame(update);
+                            } else {
+                                counter.textContent = target.toLocaleString();
+                            }
+                        }
+
+                        update();
+                    });
+                </script>
             </div>
 
             <!-- RIGHT FORM -->
@@ -846,7 +923,7 @@
                             <option value="">Select Course</option>
                         </select>
 
-                        
+
                     </div>
 
                     <textarea placeholder="Your Message"></textarea>
@@ -4849,43 +4926,43 @@
         });
     </script>
     <script>
-                            const courses = {
-                                bangalore: [
-                                    "BCA", "B.Tech", "BBA", "B.Com", "B.Des", "BA",
-                                    "B.Sc. (Psychology)", "BHM", "MCA", "MBA", "M.Com",
-                                    "M.Sc. (Chemistry)", "M.Tech", "M.Sc. (Psychology)",
-                                    "M.Sc. (Forensic Science)", "M.Sc. (Food Technology)"
-                                ],
+        const courses = {
+            bangalore: [
+                "BCA", "B.Tech", "BBA", "B.Com", "B.Des", "BA",
+                "B.Sc. (Psychology)", "BHM", "MCA", "MBA", "M.Com",
+                "M.Sc. (Chemistry)", "M.Tech", "M.Sc. (Psychology)",
+                "M.Sc. (Forensic Science)", "M.Sc. (Food Technology)"
+            ],
 
-                                mangalore: [
-                                    "B.Sc. (Allied Health Sciences)", "MBBS", "BDS", "BAMS", "BPT", "B.O.T",
-                                    "B.Pharm", "B.Sc. (Nursing)", "PB B.Sc.", "B.Sc. (Food Technology)",
-                                    "Integrated B.Sc. – M.Sc.", "BHA", "M.Sc. (Allied Health Sciences)",
-                                    "MMLS", "M.AOTT", "M.DT", "MPT", "M.Pharm", "M.Sc. (Nursing)",
-                                    "M.Sc. (Life Sciences & Medical Sciences)", "MHA", "MPH",
-                                    "MSW (Human Resource Management)", "M.MSW", "M.PSW"
-                                ]
-                            };
+            mangalore: [
+                "B.Sc. (Allied Health Sciences)", "MBBS", "BDS", "BAMS", "BPT", "B.O.T",
+                "B.Pharm", "B.Sc. (Nursing)", "PB B.Sc.", "B.Sc. (Food Technology)",
+                "Integrated B.Sc. – M.Sc.", "BHA", "M.Sc. (Allied Health Sciences)",
+                "MMLS", "M.AOTT", "M.DT", "MPT", "M.Pharm", "M.Sc. (Nursing)",
+                "M.Sc. (Life Sciences & Medical Sciences)", "MHA", "MPH",
+                "MSW (Human Resource Management)", "M.MSW", "M.PSW"
+            ]
+        };
 
-                            const campusSelect = document.getElementById("campus");
-                            const courseSelect = document.getElementById("course");
+        const campusSelect = document.getElementById("campus");
+        const courseSelect = document.getElementById("course");
 
-                            campusSelect.addEventListener("change", function () {
-                                const selectedCampus = this.value;
+        campusSelect.addEventListener("change", function () {
+            const selectedCampus = this.value;
 
-                                // Reset courses
-                                courseSelect.innerHTML = '<option value="">Select Course</option>';
+            // Reset courses
+            courseSelect.innerHTML = '<option value="">Select Course</option>';
 
-                                if (courses[selectedCampus]) {
-                                    courses[selectedCampus].forEach(course => {
-                                        const option = document.createElement("option");
-                                        option.value = course;
-                                        option.textContent = course;
-                                        courseSelect.appendChild(option);
-                                    });
-                                }
-                            });
-                        </script>
+            if (courses[selectedCampus]) {
+                courses[selectedCampus].forEach(course => {
+                    const option = document.createElement("option");
+                    option.value = course;
+                    option.textContent = course;
+                    courseSelect.appendChild(option);
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
