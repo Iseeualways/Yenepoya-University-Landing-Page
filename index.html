@@ -53,7 +53,10 @@
             color: var(--noir);
         }
 
-
+        section {
+            scroll-margin-top: 90px !important;
+            /* adjust based on navbar height */
+        }
 
         /* nav {
             background-color: rgb(255, 255, 255);
@@ -591,100 +594,6 @@
             color: rgba(0, 0, 0, 0.6);
         }
 
-
-        /* Footer */
-        footer {
-            background: var(--noir);
-            color: var(--blanc);
-            padding: 8rem 4rem 3rem;
-        }
-
-        .footer-grid {
-            max-width: 1600px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 6rem;
-            margin-bottom: 6rem;
-        }
-
-        .footer-brand h3 {
-            font-family: 'Ubuntu', sans-serif;
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-brand p {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 2rem;
-        }
-
-        .footer-col h4 {
-            font-family: 'Syne', sans-serif;
-            font-size: 0.875rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
-            transition: color 0.3s ease;
-
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-gold);
-        }
-
-        .footer-bottom {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding-top: 3rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.4);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: var(--blanc);
-            transition: all 0.3s ease;
-            cursor: none;
-        }
-
-        .social-link:hover {
-            border-color: var(--accent-gold);
-            color: var(--accent-gold);
-        }
-
         /* Responsive */
         @media (max-width: 1200px) {
             .hero-metrics {
@@ -820,24 +729,13 @@
                 grid-template-columns: 1fr;
             }
 
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
 
-            .footer-bottom {
-                flex-direction: column;
-                gap: 2rem;
-                text-align: center;
-            }
 
             .cta-section {
                 padding: 8rem 2rem;
             }
 
-            footer {
-                padding: 6rem 2rem 2rem;
-            }
+
         }
 
         /* Reveal animations */
@@ -884,15 +782,15 @@
 
     <!-- Navigation -->
     <nav id="nav">
-        <div class="logo"><img src="media/Yenepoya Logo.svg" alt=""></div>
+        <div class="logo"><img src="media/Yenepoya-Logo.svg" alt=""></div>
         <ul class="nav-links" id="navLinks">
-            <li><a href="#about">Home</a></li>
+            <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#programs">Courses</a></li>
-            <li><a href="#process">Why Choose Us</a></li>
-            <li><a href="#testimonials">Stories</a></li>
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="#why">Why Choose Us</a></li>
+            <li><a href="#testi">Stories</a></li>
             <li><a href="#faq">FAQs</a></li>
-            <li><a href="#faq">Contact</a></li>
+            <li><a href="#contact">Contact</a></li>
             <button class="nav-cta">Apply Now</button>
         </ul>
 
@@ -904,7 +802,7 @@
     </nav>
 
     <!-- Hero -->
-    <section class="hero">
+    <section class="hero" id="home">
 
         <!-- Background Big Text -->
         <div class="hero-bg-text">2025</div>
@@ -938,19 +836,17 @@
                         <input type="tel" placeholder="Phone N0." required>
                         <input type="text" placeholder="State" required>
 
-                        <select required>
+                        <select id="campus" required>
                             <option value="">Select Campus</option>
-                            <option>Mangalore Campus</option>
-                            <option>Bangalore Campus</option>
+                            <option value="bangalore">Bangalore Campus</option>
+                            <option value="mangalore">Mangalore Campus</option>
                         </select>
 
-                        <select required>
+                        <select id="course" required>
                             <option value="">Select Course</option>
-                            <!-- <option>MBBS</option>
-                            <option>BDS</option>
-                            <option>B.Sc Nursing</option>
-                            <option>Allied Health Sciences</option> -->
                         </select>
+
+                        
                     </div>
 
                     <textarea placeholder="Your Message"></textarea>
@@ -1409,10 +1305,10 @@
         }
 
         .logo-name {
-            font-size: 11px;
+            font-size: 14px;
             font-weight: 600;
-            letter-spacing: 0.05em;
-            color: var(--muted);
+
+            color: var(--gray-900);
             text-align: center;
         }
 
@@ -1512,27 +1408,7 @@
     <section class="about-section">
         <div class="about-inner text-center">
 
-            <!-- Heading block -->
-            <!-- <span class="section-tag">About Us</span>
-            <h2 class="section-title">About<span> Yenepoya </span>University</h2>
 
-            <p class="about-body">
-                Yenepoya (Deemed-to-be-University) is a leading institution in Karnataka, known for delivering quality
-                higher education with a strong focus on innovation, research, and global competencies. Headquartered in
-                Mangalore, the university offers a multidisciplinary learning environment set in a serene campus that
-                promotes academic excellence and holistic development.<br>
-
-                Expanding its legacy, the Yenepoya Bangalore campus brings the university’s academic excellence to a
-                dynamic urban setting, offering industry-aligned programs across management, technology, commerce, and
-                allied healthcare. Designed as a state-of-the-art learning hub, the campus features modern
-                infrastructure, experiential learning centres, and collaborations with leading global organizations to
-                prepare students for the future of work.<br>
-
-                Across both campuses, Yenepoya is committed to nurturing skilled professionals and responsible leaders
-                through a blend of academic rigor, practical exposure, and community engagement thereby empowering
-                students to thrive in an increasingly global and technology-driven world.
-
-            </p> -->
 
             <!-- Carousel -->
             <div class="carousel-section-label">Rankings &amp; Accreditations</div>
@@ -1576,9 +1452,7 @@
                         <div class="logo-sep"></div>
                         <div class="logo-item">
                             <div class="logo-box"><img src="ranking/THE.webp" alt="NABL" /></div>
-                            <span class="logo-name">Accredited by NABL<br> based on the ISO 15189:2022<br> standard for
-                                medical
-                                testing</span>
+                            <span class="logo-name">Listed in the<br> 301 to 400 band</span>
                         </div>
 
                     </div><!-- /.carousel-track -->
@@ -1646,7 +1520,7 @@
     </script>
 
 
-    <section class="awards-section">
+    <section class="awards-section" id="about">
         <div class="container">
             <div class="row g-0 align-items-center">
 
@@ -1701,7 +1575,7 @@
                 <!-- Content Section -->
                 <div class="col-lg-6">
                     <div class="content-wrapper">
-                        <span class="section-tag">Recognition & Excellence</span>
+                        <span class="section-tag">Who we are</span>
 
                         <h2 class="section-title"><span>About</span> Yenepoya University</h2>
 
@@ -1712,11 +1586,12 @@
                             environment set in a serene campus that promotes academic excellence and holistic
                             development.<br><br>
 
-                            Expanding its legacy, the Yenepoya Bangalore campus brings the university’s academic
-                            excellence to a dynamic urban setting, offering industry-aligned programs across management,
-                            technology, commerce, and allied healthcare. Designed as a state-of-the-art learning hub,
-                            the campus features modern infrastructure, experiential learning centres, and collaborations
-                            with leading global organizations to prepare students for the future of work.<br>
+                            Expanding its legacy, the Yenepoya University Bangalore campus brings the university’s
+                            academic excellence to a dynamic urban setting, offering industry-aligned programs across
+                            management, technology, commerce, and allied healthcare. Designed as a state-of-the-art
+                            learning hub, the campus features modern infrastructure, experiential learning centres, and
+                            collaborations with leading global organizations to prepare students for the future.
+                            <br>
                             <br>
                             Across both campuses, Yenepoya is committed to nurturing skilled professionals and
                             responsible leaders through a blend of academic rigor, practical exposure, and community
@@ -1724,7 +1599,7 @@
                             technology-driven world.
 
                         </p>
-                        <a href="#" class="cta-button">View Our Story</a>
+                        <!-- <a href="#" class="cta-button">View Our Story</a> -->
                     </div>
                 </div>
 
@@ -1800,7 +1675,7 @@
 
         /* Content Section */
         .content-wrapper {
-            padding-left: 60px;
+            padding-left: 10px;
         }
 
 
@@ -1930,61 +1805,120 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .tabs-container {
-            margin-bottom: 20px;
+            margin-bottom: 40px;
         }
 
         .campus-tabs {
             display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 24px;
             flex-wrap: wrap;
+
         }
 
         .tab-button {
-            padding: 12px 28px;
+            position: relative;
+            padding: 14px 22px;
             border: none;
-            background-color: white;
-            color: #333;
+            background: #ffffff;
+            color: #0a0a0a;
             font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 12px;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.365);
+            z-index: 1;
         }
 
+        .tab-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #9cbf28 0%, #7a9920 100%);
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+            border-radius: 12px;
+        }
+
+        .tab-button[data-campus="bangalore"]::before {
+            background: linear-gradient(135deg, #9cbf28 0%, #7a9920 100%);
+
+        }
+
+
+
         .tab-button:hover {
-            background-color: #2d2d2d;
-            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+        }
+
+        .tab-button:hover::before {
+            opacity: 0.1;
         }
 
         .tab-button.active {
-            background-color: #1a1a1a;
-            color: white;
+            color: #ffffff;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+        }
+
+        .tab-button.active::before {
+            opacity: 1;
         }
 
         .level-tabs {
             display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
+            gap: 16px;
+            margin-bottom: 48px;
             flex-wrap: wrap;
         }
 
         .content-wrappers {
             display: flex;
-            gap: 30px;
+            gap: 40px;
             align-items: flex-start;
         }
 
         .sidebar {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            min-width: 250px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 16px 22px 0px 16px;
+            min-width: 280px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
             position: sticky;
-            top: 20px;
+            top: 40px;
+            border: 1px solid #e5e5e5;
+        }
+
+        .sidebar h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #a3a3a3;
+            margin-bottom: 24px;
+            font-weight: 700;
         }
 
         .course-list {
@@ -1992,78 +1926,140 @@
         }
 
         .course-list-item {
-            padding: 7px 16px;
-            margin-bottom: 8px;
-            border-radius: 8px;
+            padding: 8px 15px;
+            border-radius: 12px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            color: #333;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #525252;
             font-size: 0.95rem;
             font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-list-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 0;
+            background: #9cbf28;
+            transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 0 3px 3px 0;
         }
 
         .course-list-item:hover {
-            background-color: #f5f5f5;
+            background-color: rgba(156, 191, 40, 0.05);
+            padding-left: 24px;
+        }
+
+        .course-list-item:hover::before {
+            height: 70%;
+        }
+
+        ol,
+        ul {
+            padding-left: 0 !important;
+            margin-left: 0 !important;
+            list-style: none;
+            /* optional */
         }
 
         .course-list-item.active {
-            background-color: #1a1a1a;
-            color: white;
+            background: linear-gradient(135deg, rgba(156, 191, 40, 0.1) 0%, rgba(156, 191, 40, 0.05) 100%);
+            color: #7a9920;
+            font-weight: 600;
+            padding-left: 24px;
+        }
+
+        .course-list-item.active::before {
+            height: 100%;
         }
 
         .course-grid {
             flex: 1;
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(920px, 1fr));
-            gap: 24px;
+            gap: 32px;
         }
 
         .course-card {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 20px 30px 20px 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
+            border: 1px solid #e5e5e5;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #9cbf28 0%, #b8d955 100%);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .course-card:hover {
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-            transform: translateY(-4px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            border-color: rgba(156, 191, 40, 0.2);
+        }
+
+        .course-card:hover::before {
+            transform: scaleX(1);
         }
 
         .course-title {
-            font-size: 1.5rem;
-            color: #1a1a1a;
-            margin-bottom: 8px;
-            font-weight: 600;
+            font-size: 1.75rem;
+            color: var(--gray-900);
+            margin-bottom: 12px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
         }
 
         .course-subtitle {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 20px;
+            font-size: 1rem;
+            color: #a3a3a3;
+            margin-bottom: 24px;
+            font-weight: 500;
         }
 
         .course-description {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            color: #242424;
+            line-height: 1.7;
+            margin-bottom: 2px;
             flex-grow: 1;
+            font-size: 1rem;
         }
 
         .specializations {
-            margin: 20px 0;
+            margin: 6px 0;
+            padding: 14px;
+            background: #6bc5e80f;
+            border-radius: 16px;
+            border: 1px solid rgba(156, 191, 40, 0.1);
         }
 
         .specializations-title {
-            font-size: 0.85rem;
-            color: #999;
+            font-size: 0.95rem;
+            color: #242424;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-            font-weight: 600;
+            letter-spacing: 0.12em;
+            margin-bottom: 5px;
+            font-weight: 900;
         }
 
         .specialization-list {
@@ -2071,43 +2067,91 @@
         }
 
         .specialization-item {
-            padding: 8px 0;
-            color: #333;
+            padding: 10px 0;
+            color: #525252;
             font-size: 0.95rem;
             display: flex;
             align-items: start;
+            transition: all 0.3s ease;
         }
 
-        .specialization-item:before {
-            content: "●";
-            color: #4ade80;
-            margin-right: 10px;
-            font-size: 0.8rem;
+        .specialization-item::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #9cbf28;
+            border-radius: 50%;
+            margin-right: 14px;
             flex-shrink: 0;
-            margin-top: 4px;
+            margin-top: 8px;
+            box-shadow: 0 0 0 0 #9cbf28;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(156, 191, 40, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 6px rgba(156, 191, 40, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(156, 191, 40, 0);
+            }
         }
 
         .apply-button {
-            width: 100%;
-            padding: 14px;
-            background-color: #1a1a1a;
-            color: white;
+            width: auto;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #9cbf28 0%, #7a9920 100%);
+            color: #ffffff;
             border: none;
-            border-radius: 8px;
+            border-radius: 14px;
             font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 600;
             margin-top: auto;
+            letter-spacing: 0.02em;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(156, 191, 40, 0.3);
+            align-self: flex-end;
+        }
+
+        .apply-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+            z-index: 0;
+        }
+
+        .apply-button:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .apply-button:hover {
-            background-color: #2d2d2d;
             transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(156, 191, 40, 0.4);
+        }
+
+        .apply-button:active {
+            transform: translateY(0);
         }
 
         .tab-content {
             display: none;
+            animation: fadeIn 0.6s ease-out;
         }
 
         .tab-content.active {
@@ -2125,18 +2169,33 @@
         .mobile-course-select {
             display: none;
             width: 100%;
-            padding: 12px 16px;
-            margin-bottom: 20px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 32px;
+            border: 2px solid #e5e5e5;
+            border-radius: 14px;
             font-size: 1rem;
-            background: white;
+            background: #ffffff;
             cursor: pointer;
+            font-weight: 600;
+            color: #0a0a0a;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+        }
+
+        .mobile-course-select:hover {
+            border-color: #9cbf28;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+        }
+
+        @media (max-width: 1400px) {
+            .course-grid {
+                grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            }
         }
 
         @media (max-width: 1200px) {
             .course-grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
             }
         }
 
@@ -2155,59 +2214,71 @@
 
             .course-grid {
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 24px;
             }
         }
 
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-
             .course-grid {
                 grid-template-columns: 1fr;
             }
 
             .campus-tabs,
             .level-tabs {
-                gap: 10px;
+                gap: 12px;
             }
 
             .tab-button {
-                padding: 10px 20px;
-                font-size: 0.95rem;
+                padding: 14px 24px;
+                font-size: 0.9rem;
+            }
+
+            .course-card {
+                padding: 32px;
+                border-radius: 20px;
+            }
+
+            .course-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tab-button {
+                padding: 12px 20px;
+                font-size: 0.85rem;
             }
 
             .course-card {
                 padding: 24px;
             }
-        }
 
-        @media (max-width: 480px) {
-            body {
-                padding: 20px 15px;
+            .course-title {
+                font-size: 1.35rem;
             }
 
-            h1 {
-                font-size: 1.75rem;
-                margin-bottom: 20px;
+            .apply-button {
+                padding: 16px;
+                font-size: 0.95rem;
             }
 
-            .tab-button {
-                padding: 8px 16px;
-                font-size: 0.9rem;
+            .specializations {
+                padding: 20px;
             }
         }
     </style>
-    <section class="program-courses">
+    <section class="program-courses" id="courses">
         <div class="container">
             <div class=" text-center">
                 <span class="section-tag">Course</span>
                 <h2 class="section-title"><span>Programs</span> Offered</h2>
-                <p class="section-description mb-5" style="min-width: 1100px;">Yenepoya University offers a wide range of
-                    industry-relevant programs designed to meet the evolving demands of modern careers. The curriculum
-                    across all courses is carefully structured to equip students with practical skills,
-                    interdisciplinary knowledge, and research-driven learning aligned with global standards.
-<br>
+                <p class="section-description mb-5" style="min-width: 1100px;">
+                    Yenepoya (Deemed-to-be-University) offers a wide range of industry-relevant programs designed to
+                    meet the evolving demands of modern careers. The curriculum across all courses is carefully
+                    structured to equip students with practical skills, interdisciplinary knowledge, and research-driven
+                    learning aligned with global standards.
+
+                    <br>
                     With a strong emphasis on experiential learning, students benefit from hands-on training, exposure
                     to emerging technologies, and opportunities to explore cross-disciplinary domains. From healthcare
                     and life sciences to management, technology, and commerce, Yenepoya ensures a holistic academic
@@ -2221,14 +2292,15 @@
 
             <div class="tabs-container">
                 <div class="campus-tabs">
-                    <button class="tab-button campus-tab active" data-campus="bangalore">Yenepoya (Deemed-to-be
+
+                    <button class="tab-button campus-tab active" data-campus="mangalore">Yenepoya (Deemed-to-be
+                        University), Bangalore</button>
+                    <button class="tab-button campus-tab " data-campus="bangalore">Yenepoya (Deemed-to-be
                         University),
                         Mangalore</button>
-                    <button class="tab-button campus-tab" data-campus="mangalore">Yenepoya (Deemed-to-be
-                        University), Bangalore</button>
                 </div>
 
-                <div id="bangalore-campus" class="tab-content active">
+                <div id="bangalore-campus" class="tab-content">
                     <div class="level-tabs">
                         <button class="tab-button level-tab active" data-campus="bangalore" data-level="ug">UG Programs
                         </button>
@@ -2273,7 +2345,7 @@
                                     <div class="course-card">
                                         <h2 class="course-title">Bachelor of Science (B.Sc.) - Allied Health Sciences
                                         </h2>
-                                        <div class="course-subtitle">(B.Sc.)</div>
+
                                         <p class="course-description">This undergraduate program is designed to build a
                                             strong foundation in healthcare support services, equipping students with
                                             essential clinical, technical, and patient-care skills. With a focus on
@@ -2290,12 +2362,15 @@
                                                 <li class="specialization-item">Medical Radiology & Imaging Technology
                                                     (BMRIT)
                                                 </li>
+                                                <li class="specialization-item">Medical Laboratory Science (BMLS)
+                                                </li>
                                                 <li class="specialization-item">Respiratory Therapy</li>
                                                 <li class="specialization-item">Cardiovascular Technology (CVT)</li>
 
                                             </ul>
                                         </div>
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -2304,7 +2379,7 @@
                                 <div class="course-section" data-course="MBBS">
                                     <div class="course-card">
                                         <h2 class="course-title">Bachelor of Medicine & Bachelor of Surgery (MBBS)</h2>
-                                        <div class="course-subtitle">(B.Tech)</div>
+
                                         <p class="course-description">This flagship medical program provides
                                             comprehensive
                                             training in clinical sciences, patient care, and medical practice. Students
@@ -2325,7 +2400,8 @@
                                             </li>
                                         </ul>
                                     </div> -->
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -2333,7 +2409,7 @@
                                 <div class="course-section" data-course="BDS">
                                     <div class="course-card">
                                         <h2 class="course-title">Bachelor of Dental Surgery (BDS)</h2>
-                                        <div class="course-subtitle">(BCA)</div>
+
                                         <p class="course-description">This program focuses on oral healthcare, dental
                                             sciences, and clinical dentistry practices. Students gain hands-on
                                             experience in
@@ -2353,7 +2429,8 @@
                                             <li class="specialization-item">Mobile Application Development</li>
                                         </ul>
                                     </div> -->
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -2361,7 +2438,7 @@
                                 <div class="course-section" data-course="BAMS">
                                     <div class="course-card">
                                         <h2 class="course-title">Bachelor of Ayurvedic Medicine & Surgery (BAMS)</h2>
-                                        <div class="course-subtitle">(BBA)</div>
+
                                         <p class="course-description">This program integrates traditional Ayurvedic
                                             knowledge with modern medical science to provide a holistic approach to
                                             healthcare. Students learn diagnosis, treatment, and preventive healthcare
@@ -2380,7 +2457,8 @@
                                             <li class="specialization-item">Business Analytics</li>
                                         </ul>
                                     </div> -->
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -2388,7 +2466,7 @@
                                 <div class="course-section" data-course="BPT">
                                     <div class="course-card">
                                         <h2 class="course-title">Bachelor of Physiotherapy (BPT)</h2>
-                                        <div class="course-subtitle">(B.Com)</div>
+
                                         <p class="course-description">This program focuses on physical rehabilitation,
                                             movement science, and therapeutic techniques to restore mobility and improve
                                             quality of life. Students receive hands-on clinical training in treating
@@ -2406,7 +2484,8 @@
                                             <li class="specialization-item">E-commerce & Digital Business</li>
                                         </ul>
                                     </div> -->
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -2414,7 +2493,7 @@
                                 <div class="course-section" data-course="B.O.T">
                                     <div class="course-card">
                                         <h2 class="course-title">Bachelor of Occupational Therapy (B.O.T)</h2>
-                                        <div class="course-subtitle">(B.A.)</div>
+
                                         <p class="course-description">This program trains students to help individuals
                                             regain independence in daily activities through therapeutic interventions.
                                             With
@@ -2432,14 +2511,15 @@
                                             <li class="specialization-item">Political Science & Sociology</li>
                                         </ul>
                                     </div> -->
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
                                 <div class="course-section" data-course="B.Pharm">
                                     <div class="course-card">
                                         <h2 class="course-title">Bachelor of Pharmacy (B.Pharm)</h2>
-                                        <div class="course-subtitle">(B.A.)</div>
+
                                         <p class="course-description">This program provides a strong foundation in
                                             pharmaceutical sciences, drug formulation, and healthcare applications.
                                             Students
@@ -2448,14 +2528,15 @@
                                             practice.
                                         </p>
 
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
                                 <div class="course-section" data-course="B.Sc(Nursing)">
                                     <div class="course-card">
                                         <h2 class="course-title">Bachelor of Science (B.Sc.) – Nursing</h2>
-                                        <div class="course-subtitle">(B.A.)</div>
+
                                         <p class="course-description">This program focuses on patient care, clinical
                                             practice, and healthcare support, preparing students to become skilled
                                             nursing
@@ -2465,14 +2546,15 @@
                                             coordination.
                                         </p>
 
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
                                 <div class="course-section" data-course="PBB.Sc.">
                                     <div class="course-card">
                                         <h2 class="course-title">Post Basic Bachelor of Science (PB B.Sc.) Nursing</h2>
-                                        <div class="course-subtitle">(B.A.)</div>
+
                                         <p class="course-description">This program is designed for registered nurses
                                             seeking
                                             to upgrade their qualifications and advance their careers in nursing
@@ -2482,14 +2564,15 @@
                                             and knowledge in specialized areas of nursing.
                                         </p>
 
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
                                 <div class="course-section" data-course="Food">
                                     <div class="course-card">
                                         <h2 class="course-title">Bachelor of Science (B.Sc.) – Food Technology</h2>
-                                        <div class="course-subtitle">(B.A.)</div>
+
                                         <p class="course-description">This program focuses on food science, processing,
                                             safety, and quality management. Students gain practical exposure to food
                                             production technologies, laboratory testing, and industry practices,
@@ -2498,14 +2581,15 @@
 
                                         </p>
 
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
                                 <div class="course-section" data-course="B.Sc–M.Sc">
                                     <div class="course-card">
                                         <h2 class="course-title">Integrated B.Sc. – M.Sc. Clinical Embryology</h2>
-                                        <div class="course-subtitle">(B.A.)</div>
+
                                         <p class="course-description">This integrated program provides in-depth
                                             knowledge of
                                             reproductive biology and embryology, combining undergraduate and
@@ -2518,14 +2602,15 @@
 
                                         </p>
 
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
                                 <div class="course-section" data-course="BHA">
                                     <div class="course-card">
                                         <h2 class="course-title">Bachelor of Hospital Administration (BHA)</h2>
-                                        <div class="course-subtitle">(B.A.)</div>
+
                                         <p class="course-description">
                                             This program equips students with the managerial and operational skills
                                             required
@@ -2540,7 +2625,8 @@
 
                                         </p>
 
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -2607,7 +2693,7 @@
                                 <div class="course-section active" data-course="M.Sc.(Allied Health Sciences)">
                                     <div class="course-card">
                                         <h2 class="course-title">Master of Science (M.Sc.) – Allied Health Sciences</h2>
-                                        <div class="course-subtitle">(M.Tech)</div>
+
                                         <p class="course-description">Designed to build advanced expertise in healthcare
                                             technology and diagnostics, this program focuses on clinical specialization,
                                             research, and high-level patient care competencies. Students gain hands-on
@@ -2626,10 +2712,11 @@
                                                 </li>
                                                 <li class="specialization-item">Echocardiography
                                                 </li>
-                                                <li class="specialization-item">Computer Science & Engineering</li>
+                                                <li class="specialization-item">Neurosciences</li>
                                             </ul>
                                         </div>
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -2637,7 +2724,7 @@
                                 <div class="course-section" data-course="MMLS">
                                     <div class="course-card">
                                         <h2 class="course-title">Master of Medical Laboratory Sciences (MMLS)</h2>
-                                        <div class="course-subtitle">(MCA)</div>
+
                                         <p class="course-description">This program develops in-depth expertise in
                                             diagnostic
                                             laboratory sciences, focusing on advanced testing, analysis, and disease
@@ -2654,7 +2741,8 @@
 
                                             </ul>
                                         </div>
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -2663,7 +2751,7 @@
                                     <div class="course-card">
                                         <h2 class="course-title">Master of Anaesthesia & Operation Theatre Technology
                                             (M.AOTT)</h2>
-                                        <div class="course-subtitle">(MBA)</div>
+
                                         <p class="course-description">Focused on perioperative care and anaesthesia
                                             support,
                                             this program trains students in operating theatre management, patient
@@ -2681,7 +2769,8 @@
                                             <li class="specialization-item">Business Analytics & Strategy</li>
                                         </ul>
                                     </div> -->
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -2689,7 +2778,7 @@
                                 <div class="course-section" data-course="M.DT">
                                     <div class="course-card">
                                         <h2 class="course-title">Master of Dialysis Therapy (M.DT)</h2>
-                                        <div class="course-subtitle">(M.Sc.)</div>
+
                                         <p class="course-description">This program equips students with specialized
                                             skills
                                             in renal care and dialysis procedures, preparing them to manage patients
@@ -2707,7 +2796,8 @@
                                             <li class="specialization-item">Healthcare Management</li>
                                         </ul>
                                     </div> -->
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -2715,7 +2805,7 @@
                                 <div class="course-section" data-course="MPT">
                                     <div class="course-card">
                                         <h2 class="course-title">Master of Physiotherapy (MPT)</h2>
-                                        <div class="course-subtitle">(M.Com)</div>
+
                                         <p class="course-description">Focused on advanced rehabilitation and therapeutic
                                             sciences, this program equips students with specialized clinical skills
                                             across
@@ -2743,7 +2833,8 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -2751,7 +2842,7 @@
                                 <div class="course-section" data-course="M.Pharm">
                                     <div class="course-card">
                                         <h2 class="course-title">Master of Pharmacy (M.Pharm)</h2>
-                                        <div class="course-subtitle">(M.A.)</div>
+
                                         <p class="course-description">This program emphasizes drug research,
                                             formulation,
                                             and clinical application, preparing students for careers in pharmaceutical
@@ -2768,14 +2859,15 @@
 
                                             </ul>
                                         </div>
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
                                 <div class="course-section" data-course="M.Sc.(Nursing)">
                                     <div class="course-card">
                                         <h2 class="course-title">Master of Science (M.Sc.) – Nursing</h2>
-                                        <div class="course-subtitle">(M.A.)</div>
+
                                         <p class="course-description">This is a specialized program aimed at enhancing
                                             clinical expertise and leadership in nursing practice and healthcare
                                             management.
@@ -2798,7 +2890,8 @@
 
                                             </ul>
                                         </div>
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
                                 <div class="course-section" data-course="M.Sc.(Life Sciences & Medical Sciences)">
@@ -2806,7 +2899,7 @@
                                         <h2 class="course-title">Master of Science (M.Sc.) – Life Sciences & Medical
                                             Sciences
                                         </h2>
-                                        <div class="course-subtitle">(M.A.)</div>
+
                                         <p class="course-description">These courses focus on advanced scientific
                                             research,
                                             laboratory techniques, and clinical applications in biological and medical
@@ -2835,13 +2928,14 @@
 
                                             </ul>
                                         </div>
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
                                 <div class="course-section" data-course="MHA">
                                     <div class="course-card">
                                         <h2 class="course-title">Master of Hospital Administration (MHA)</h2>
-                                        <div class="course-subtitle">(M.A.)</div>
+
                                         <p class="course-description">This program prepares students for leadership
                                             roles in
                                             hospital operations, healthcare systems, and administration.</p>
@@ -2857,13 +2951,14 @@
 
                                         </ul>
                                     </div> -->
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
                                 <div class="course-section" data-course="MPH">
                                     <div class="course-card">
                                         <h2 class="course-title">Master of Public Health (MPH)</h2>
-                                        <div class="course-subtitle">(M.A.)</div>
+
                                         <p class="course-description">
                                             This program focuses on community health, epidemiology, and public health
                                             policies to improve population health outcomes.
@@ -2880,52 +2975,45 @@
 
                                         </ul>
                                     </div> -->
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
                                 <div class="course-section" data-course="MSW(Human Resource Management)">
                                     <div class="course-card">
                                         <h2 class="course-title">Master of Social Work (MSW) - Human Resource Management
                                         </h2>
-                                        <div class="course-subtitle">(M.A.)</div>
+
                                         <p class="course-description">This program combines social work principles with
                                             HR
                                             practices for roles in organizational development and people management.
                                         </p>
 
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
                                 <div class="course-section" data-course="M.MSW">
                                     <div class="course-card">
                                         <h2 class="course-title">Master of Medical Social Work (M.MSW)</h2>
-                                        <div class="course-subtitle">(M.A.)</div>
+
                                         <p class="course-description">This particular program seeks to train students to
                                             support patients and families in healthcare settings through counseling and
                                             social interventions.</p>
 
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
                                 <div class="course-section" data-course="M.PSW">
                                     <div class="course-card">
                                         <h2 class="course-title">Master of Psychiatric Social Work (M.PSW)</h2>
-                                        <div class="course-subtitle">(M.A.)</div>
+
                                         <p class="course-description">This program focuses on mental health support,
                                             rehabilitation, and psychosocial care in clinical environments.</p>
-                                        <div class="specializations">
-                                            <div class="specializations-title">Specializations</div>
-                                            <ul class="specialization-list">
-                                                <li class="specialization-item">Pharmaceutics
-                                                </li>
-                                                <li class="specialization-item">Pharmacology</li>
-                                                <li class="specialization-item">Pharmacy Practice
-                                                </li>
-                                                <li class="specialization-item">Regulatory Affairss</li>
 
-                                            </ul>
-                                        </div>
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -2934,7 +3022,7 @@
                     </div>
                 </div>
 
-                <div id="mangalore-campus" class="tab-content">
+                <div id="mangalore-campus" class="tab-content active">
                     <div class="level-tabs">
                         <button class="tab-button level-tab active" data-campus="mangalore" data-level="ug">UG
                             Program</button>
@@ -2979,7 +3067,7 @@
                                 <div class="course-section active" data-course="BCA">
                                     <div class="course-card">
                                         <h2 class="course-title">Bachelor of Computer Applications (BCA)</h2>
-                                        <div class="course-subtitle">(B.E.)</div>
+
                                         <p class="course-description">This program is designed to build a strong
                                             foundation
                                             in computing, programming, and emerging digital technologies. With a focus
@@ -3003,7 +3091,8 @@
 
                                             </ul>
                                         </div>
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -3011,7 +3100,7 @@
                                 <div class="course-section" data-course="B.Tech">
                                     <div class="course-card">
                                         <h2 class="course-title">Bachelor of Technology (B.Tech)</h2>
-                                        <div class="course-subtitle">(BCA)</div>
+
                                         <p class="course-description">This program provides a strong technical
                                             foundation in
                                             engineering principles, combined with specialization in cutting-edge
@@ -3037,7 +3126,8 @@
 
                                             </ul>
                                         </div>
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -3045,7 +3135,7 @@
                                 <div class="course-section" data-course="BBA">
                                     <div class="course-card">
                                         <h2 class="course-title">Bachelor of Business Administration (BBA)</h2>
-                                        <div class="course-subtitle">(BBM)</div>
+
                                         <p class="course-description">This program is designed to build strong
                                             managerial,
                                             analytical, and leadership skills required in the modern business world.
@@ -3074,7 +3164,8 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -3082,7 +3173,7 @@
                                 <div class="course-section" data-course="B.Com">
                                     <div class="course-card">
                                         <h2 class="course-title">Bachelor of Commerce (B.Com)</h2>
-                                        <div class="course-subtitle">(B.Com)</div>
+
                                         <p class="course-description">This program provides a comprehensive
                                             understanding of
                                             finance, accounting, taxation, and business operations. Integrated with
@@ -3103,7 +3194,8 @@
 
                                             </ul>
                                         </div>
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -3111,7 +3203,7 @@
                                 <div class="course-section" data-course="B.Des">
                                     <div class="course-card">
                                         <h2 class="course-title">Bachelor of Design (B.Des)</h2>
-                                        <div class="course-subtitle">(B.Sc.)</div>
+
                                         <p class="course-description">
                                             This program nurtures creativity and design thinking across multiple visual
                                             and
@@ -3131,7 +3223,8 @@
 
                                             </ul>
                                         </div>
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -3139,7 +3232,7 @@
                                 <div class="course-section" data-course="BA">
                                     <div class="course-card">
                                         <h2 class="course-title">Bachelor of Arts (BA)</h2>
-                                        <div class="course-subtitle">(B.A.)</div>
+
                                         <p class="course-description">These multidisciplinary programs provide a strong
                                             foundation in social sciences as well as modern media, enabling students to
                                             understand economic systems, political structures, and journalistic ethos.
@@ -3157,14 +3250,15 @@
 
                                             </ul>
                                         </div>
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
                                 <div class="course-section" data-course="B.Sc. (Psychology)">
                                     <div class="course-card">
                                         <h2 class="course-title">Bachelor of Science (B.Sc.) - Psychology</h2>
-                                        <div class="course-subtitle">(B.A.)</div>
+
                                         <p class="course-description">This program explores human behavior, cognition,
                                             and
                                             mental processes, combining theoretical knowledge with practical
@@ -3173,14 +3267,15 @@
                                             counseling techniques.
 
 
-                                            <button class="apply-button">Apply</button>
+                                            <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                    style="color:black"></i></button>
                                     </div>
                                 </div>
 
                                 <div class="course-section" data-course="BHM">
                                     <div class="course-card">
                                         <h2 class="course-title">Bachelor of Hotel Management (BHM)</h2>
-                                        <div class="course-subtitle">(B.A.)</div>
+
                                         <p class="course-description">Designed for the hospitality industry, this
                                             program
                                             focuses on hotel operations, customer service, and hospitality management.
@@ -3190,7 +3285,8 @@
                                             hotels, tourism, and service sectors.
                                         </p>
 
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -3231,7 +3327,7 @@
                                 <div class="course-section active" data-course="MCA">
                                     <div class="course-card">
                                         <h2 class="course-title">Master of Computer Applications (MCA)</h2>
-                                        <div class="course-subtitle">(M.E.)</div>
+
                                         <p class="course-description">This program focuses on advanced computing
                                             technologies and equips students with the skills required for specialized
                                             roles
@@ -3248,7 +3344,8 @@
                                                 <li class="specialization-item">Data Science (Big Data / IoT)</li>
                                             </ul>
                                         </div>
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -3256,7 +3353,7 @@
                                 <div class="course-section" data-course="MBA">
                                     <div class="course-card">
                                         <h2 class="course-title">Master of Business Administration (MBA)</h2>
-                                        <div class="course-subtitle">(MCA)</div>
+
                                         <p class="course-description">This program is designed to develop strategic
                                             thinking, leadership, and managerial expertise. With global certifications
                                             and
@@ -3267,7 +3364,7 @@
                                             <div class="specializations-title">Specializations</div>
                                             <ul class="specialization-list">
                                                 <li class="specialization-item">Marketing, Finance, HR</li>
-                                                <li class="specialization-item">Logistics & Supply Chain
+                                                <li class="specialization-item">Logistics & Supply Chain Management
                                                 </li>
                                                 <li class="specialization-item">Healthcare & Hospital Administration
                                                 </li>
@@ -3277,7 +3374,8 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -3285,7 +3383,7 @@
                                 <div class="course-section" data-course="M.Com">
                                     <div class="course-card">
                                         <h2 class="course-title">Master of Commerce (M.Com)</h2>
-                                        <div class="course-subtitle">(MBA)</div>
+
                                         <p class="course-description">This program provides a comprehensive
                                             understanding of
                                             finance, accounting and business operations especially in the international
@@ -3303,7 +3401,8 @@
 
                                             </ul>
                                         </div>
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -3311,7 +3410,7 @@
                                 <div class="course-section" data-course="M.Sc.(Chemistry)">
                                     <div class="course-card">
                                         <h2 class="course-title">Master of Science (M.Sc.) – Chemistry</h2>
-                                        <div class="course-subtitle">(M.Com)</div>
+
                                         <p class="course-description">Designed to provide advanced expertise in chemical
                                             sciences, this program focuses on analytical and organic chemistry with
                                             applications in research, pharmaceuticals, and industrial processes.</p>
@@ -3325,7 +3424,8 @@
 
                                             </ul>
                                         </div>
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -3333,7 +3433,7 @@
                                 <div class="course-section" data-course="M.Tech">
                                     <div class="course-card">
                                         <h2 class="course-title">Master of Technology (M.Tech)</h2>
-                                        <div class="course-subtitle">(M.Sc.)</div>
+
                                         <p class="course-description">This program provides advanced technical knowledge
                                             in
                                             engineering domains, preparing students for careers in core engineering
@@ -3346,7 +3446,8 @@
 
                                             </ul>
                                         </div>
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
@@ -3354,21 +3455,22 @@
                                 <div class="course-section" data-course="M.Sc.(Psychology)">
                                     <div class="course-card">
                                         <h2 class="course-title">Master of Science (M.Sc.) – Psychology</h2>
-                                        <div class="course-subtitle">(M.A.)</div>
+
                                         <p class="course-description">This program offers in-depth knowledge of human
                                             behavior, cognition, and mental processes. With a strong focus on research,
                                             assessment techniques, and applied psychology, students are prepared for
                                             careers
                                             in clinical, counseling, and organizational settings.</p>
 
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
                                 <div class="course-section" data-course="M.Sc.(Forensic Science)">
                                     <div class="course-card">
                                         <h2 class="course-title">Master of Science (M.Sc.) – Forensic Science</h2>
-                                        <div class="course-subtitle">(M.A.)</div>
+
                                         <p class="course-description">Focused on the application of scientific
                                             principles to
                                             criminal investigations, this program trains students in forensic analysis,
@@ -3376,20 +3478,22 @@
                                             legal
                                             systems.</p>
 
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
 
                                 <div class="course-section" data-course="M.Sc.(Food Technology)">
                                     <div class="course-card">
                                         <h2 class="course-title">Master of Science (M.Sc.) – Food Technology</h2>
-                                        <div class="course-subtitle">(M.A.)</div>
+
                                         <p class="course-description">This program emphasizes food processing, quality
                                             control, and food safety standards. Students gain practical knowledge in
                                             food
                                             production technologies and innovation within the food industry.</p>
 
-                                        <button class="apply-button">Apply</button>
+                                        <button class="apply-button">Apply Now <i class="bi bi-arrow-up-right"
+                                                style="color:black"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -3537,7 +3641,7 @@
             top: 55%;
             /* starts from middle of cards */
             height: 40%;
-            background: linear-gradient(90deg, rgba(82, 186, 255, 0.205), rgba(66, 152, 16, 0.283)) !important;
+            background: linear-gradient(90deg, rgba(82, 186, 255, 0.504), rgba(66, 152, 16, 0.504)) !important;
             /* dark blue */
             z-index: -1;
         }
@@ -3776,7 +3880,7 @@
 
             <div class="events-header">
                 <div class="events-header-text">
-                    <span class="section-tag">Campus</span>
+                    <span class="section-tag">Campus Amenities</span>
                     <h2 class="section-title"><span>Infrastructure</span> at University</h2>
                     <p class="section-description" style="min-width: 1100px;">Both the Yenepoya University campuses
                         offer modern infrastructure
@@ -3799,11 +3903,11 @@
                     <div class="swiper-slide">
                         <div class="event-card">
                             <div class="event-img">
-                                <img src="media/Academic Blocks.webp" alt="Hackathon event" loading="lazy">
-                                <span class="event-badge">Blocks</span>
+                                <img src="infra/classroom-1.jpeg" alt="Hackathon event" loading="lazy">
+                                <span class="event-badge">01</span>
                             </div>
                             <div class="event-content">
-                                <div class="event-title">Blocks</div>
+                                <div class="event-title">Classroom</div>
                                 <div class="event-meta">
                                 </div>
                             </div>
@@ -3813,8 +3917,8 @@
                     <div class="swiper-slide">
                         <div class="event-card">
                             <div class="event-img">
-                                <img src="media/Cafeteria.webp" alt="Yenotsav event" loading="lazy">
-                                <span class="event-badge">Cafeteria</span>
+                                <img src="infra/cafe-1.jpg" alt="Yenotsav event" loading="lazy">
+                                <span class="event-badge">02</span>
                             </div>
                             <div class="event-content">
                                 <div class="event-title">Cafeteria</div>
@@ -3827,11 +3931,11 @@
                     <div class="swiper-slide">
                         <div class="event-card">
                             <div class="event-img">
-                                <img src="media/Football Ground.webp" alt="Rotaract Club event" loading="lazy">
-                                <span class="event-badge">Football Ground</span>
+                                <img src="infra/computer-1.jpg" alt="Rotaract Club event" loading="lazy">
+                                <span class="event-badge">03</span>
                             </div>
                             <div class="event-content">
-                                <div class="event-title">Football Ground</div>
+                                <div class="event-title">Computer Lab</div>
                                 <div class="event-meta">
                                 </div>
                             </div>
@@ -3841,11 +3945,11 @@
                     <div class="swiper-slide">
                         <div class="event-card">
                             <div class="event-img">
-                                <img src="media/Hostel.webp" alt="Annual Fest event" loading="lazy">
-                                <span class="event-badge">Hostel</span>
+                                <img src="infra/gym-thumb.jpg" alt="Annual Fest event" loading="lazy">
+                                <span class="event-badge">04</span>
                             </div>
                             <div class="event-content">
-                                <div class="event-title">Hostel</div>
+                                <div class="event-title">Gym</div>
                                 <div class="event-meta">
                                 </div>
                             </div>
@@ -3855,8 +3959,8 @@
                     <div class="swiper-slide">
                         <div class="event-card">
                             <div class="event-img">
-                                <img src="media/Indoor Sports Complex.webp" alt="Annual Fest event" loading="lazy">
-                                <span class="event-badge">Indoor Sports</span>
+                                <img src="infra/S1 (1).jpg" alt="Annual Fest event" loading="lazy">
+                                <span class="event-badge">05</span>
                             </div>
                             <div class="event-content">
                                 <div class="event-title">Indoor Sports</div>
@@ -3870,7 +3974,7 @@
                         <div class="event-card">
                             <div class="event-img">
                                 <img src="media/Laboratory.webp" alt="Annual Fest event" loading="lazy">
-                                <span class="event-badge">Laboratory</span>
+                                <span class="event-badge">06</span>
                             </div>
                             <div class="event-content">
                                 <div class="event-title">Laboratory</div>
@@ -3884,7 +3988,7 @@
                         <div class="event-card">
                             <div class="event-img">
                                 <img src="media/Library.webp" alt="Annual Fest event" loading="lazy">
-                                <span class="event-badge">Library</span>
+                                <span class="event-badge">07</span>
                             </div>
                             <div class="event-content">
                                 <div class="event-title">Library</div>
@@ -3898,10 +4002,23 @@
                         <div class="event-card">
                             <div class="event-img">
                                 <img src="media/Theatre.webp" alt="Annual Fest event" loading="lazy">
-                                <span class="event-badge">Theatre</span>
+                                <span class="event-badge">08</span>
                             </div>
                             <div class="event-content">
                                 <div class="event-title">Theatre</div>
+                                <div class="event-meta">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="event-card">
+                            <div class="event-img">
+                                <img src="infra/transport-1.jpg" alt="Annual Fest event" loading="lazy">
+                                <span class="event-badge">08</span>
+                            </div>
+                            <div class="event-content">
+                                <div class="event-title">Transport</div>
                                 <div class="event-meta">
                                 </div>
                             </div>
@@ -3962,7 +4079,7 @@
 
 
     <!-- About / Features -->
-    <section class="section" id="about">
+    <section class="section" id="why">
         <div class="section-number">01</div>
         <div class="section-header reveal">
             <span class="section-tag">Our Approach</span>
@@ -4187,12 +4304,14 @@
         }
     </style>
 
-    <section class="tc-section">
+    <section class="tc-section" id="testi">
         <div class="container text-center">
-            <span class="section-tag">Testimonials</span>
+            <span class="section-tag">Stories</span>
             <h2 class="section-title">Student <span>Testimonials</span></h2>
-            <p>Get valuable insights about the Yenepoya (Deemed-to-be University) admissions for both the Mangalore and
+            <p style=" font-family: 'DM Sans', sans-serif;">Get valuable insights about the Yenepoya (Deemed-to-be
+                University) admissions for both the Mangalore and
                 Bangalore campuses from the students of the university.</p>
+
         </div>
 
         <div class="tc-container">
@@ -4204,79 +4323,90 @@
                 <div class="tc-track" id="tc-track">
 
                     <div class="tc-card">
-                        <p class="tc-quote">The faculty here genuinely cares about your growth. I felt supported every
-                            step of the way through my medical programme.</p>
+                        <p class="tc-quote">“Hi, I’m Adharv. Right now I’m at Yenepoya University. I’m from Alappuzha
+                            and I am currently pursuing a BBA in Aviation. I extend my sincerest gratitude to
+                            BangaloreStudy for helping me secure a spot in this course!”</p>
                         <div class="tc-divider"></div>
                         <div class="tc-person">
                             <div class="tc-avatar" style="background:#E6F1FB;color:#0C447C">AN</div>
                             <div>
-                                <p class="tc-name">Aisha Nair</p>
-                                <p class="tc-role">MBBS, Batch of 2023</p>
+                                <p class="tc-name">Adharv</p>
+                                <p class="tc-role">Student</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="tc-card">
-                        <p class="tc-quote">World-class labs and a vibrant campus culture. My years here shaped not just
-                            my skills but my entire outlook on healthcare.</p>
+                        <p class="tc-quote">“I am Bushra Fatima Ansari. I am from Lucknow. I recently took admission to
+                            Yenepoya University, Bangalore. The system was wonderful. The higher authorities also. The
+                            faculty assisted me wonderfully. The people here are very kind and sweet. They sorted
+                            everything regarding my counselling and everything else. I am looking forward to a better
+                            future at this university!”</p>
                         <div class="tc-divider"></div>
                         <div class="tc-person">
                             <div class="tc-avatar" style="background:#E1F5EE;color:#085041">RS</div>
                             <div>
-                                <p class="tc-name">Rohan Shetty</p>
-                                <p class="tc-role">BDS, Batch of 2022</p>
+                                <p class="tc-name">Bushra Fatima Ansari</p>
+                                <p class="tc-role">Student</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="tc-card">
-                        <p class="tc-quote">The research opportunities were outstanding. I co-authored a paper in my
-                            second year — something I never imagined possible.</p>
+                        <p class="tc-quote">“My daughter studies here, and when I came to the college, I was really
+                            impressed. Many people cooperated with me, and the admission process was smooth. I felt very
+                            good about the college. The facilities are good, the campus is clean, and everyone here is
+                            very friendly and helpful.”</p>
                         <div class="tc-divider"></div>
                         <div class="tc-person">
                             <div class="tc-avatar" style="background:#FAEEDA;color:#633806">PK</div>
                             <div>
-                                <p class="tc-name">Priya Kamath</p>
-                                <p class="tc-role">M.Sc Biomedical, 2024</p>
+                                <p class="tc-name">Mukarram Ali</p>
+                                <p class="tc-role">Parents</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="tc-card">
-                        <p class="tc-quote">Placement support was excellent. The career cell connected me with top
-                            hospitals before I even graduated.</p>
+                        <p class="tc-quote">“Hi, I’m Haripriya from Alappuzha. I was looking for a BBA course and I came
+                            to know about bangalorestudy.com. After contacting them, I got an admission to my dream
+                            university in Bangalore - Yenepoya University. I’m very happy about it!”</p>
                         <div class="tc-divider"></div>
                         <div class="tc-person">
                             <div class="tc-avatar" style="background:#FBEAF0;color:#72243E">DR</div>
                             <div>
-                                <p class="tc-name">Devika Rao</p>
-                                <p class="tc-role">Physiotherapy, 2023</p>
+                                <p class="tc-name">Haripriya</p>
+                                <p class="tc-role">Student</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="tc-card">
-                        <p class="tc-quote">Being part of the rotaract club taught me leadership I couldn't find in
-                            textbooks. A truly holistic university.</p>
+                        <p class="tc-quote">“Hello. I am Priyanka. I am from Coorg and I am very thankful to the people
+                            who are at Bangalore Study. Thank you so much Megha mam who gave such good information about
+                            Bangalore universities. I got admitted to Yenepoya University. They were very friendly and
+                            supportive. The experience at the university is very good. They made the process very
+                            smooth. Thank you!”</p>
                         <div class="tc-divider"></div>
                         <div class="tc-person">
                             <div class="tc-avatar" style="background:#EEEDFE;color:#3C3489">KP</div>
                             <div>
-                                <p class="tc-name">Kiran Pinto</p>
-                                <p class="tc-role">Pharmacy, Batch of 2024</p>
+                                <p class="tc-name">Priyanka</p>
+                                <p class="tc-role">Student</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="tc-card">
-                        <p class="tc-quote">The hospital attachment programme gave me real clinical exposure from the
-                            very first semester. Invaluable experience.</p>
+                        <p class="tc-quote">“Yenepoya (Deemed-to-be University) strives to offer higher education to
+                            students from across the country and abroad. Listen to what students from the northeastern
+                            region of India have to say about Yenepoya, Bangalore.”</p>
                         <div class="tc-divider"></div>
                         <div class="tc-person">
                             <div class="tc-avatar" style="background:#EAF3DE;color:#27500A">MB</div>
                             <div>
-                                <p class="tc-name">Meera Bangera</p>
-                                <p class="tc-role">Nursing, Batch of 2022</p>
+                                <p class="tc-name">Collective Insight from</p>
+                                <p class="tc-role">Northeast Students</p>
                             </div>
                         </div>
                     </div>
@@ -4293,7 +4423,7 @@
     <!-- FAQ -->
     <section class="section faq-section" id="faq">
         <div class="section-header ">
-            <span class="section-tag">FAQ</span>
+            <span class="section-tag">FAQs</span>
             <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
         </div>
         <div class="faq-list">
@@ -4319,9 +4449,11 @@
                 </div>
                 <div class="faq-answer">
                     <div class="faq-answer-content">
-                        The Mangalore campus primarily focuses on medical, dental, pharmacy, nursing, and allied health
-                        sciences, while the Bangalore campus offers programs in technology, management, commerce,
-                        design, and emerging digital fields with industry collaborations.
+                        The Yenepoya University Mangalore campus primarily focuses on medical, dental, pharmacy,
+                        nursing, and allied health sciences, while the Yenepoya (Deemed-to-be University) Bangalore
+                        campus offers programs in technology, management, commerce, design, and emerging digital fields
+                        with industry collaborations.
+
 
                     </div>
                 </div>
@@ -4334,7 +4466,9 @@
                 <div class="faq-answer">
                     <div class="faq-answer-content">
                         Yes, the university emphasizes hands-on learning through clinical training, laboratory work,
-                        internships, industry collaborations, and real-world projects across both campuses.
+                        internships, industry collaborations, and real-world projects across both campuses, most notably
+                        through Yenepoya University course admissions Mangalore.
+
 
                     </div>
                 </div>
@@ -4346,9 +4480,10 @@
                 </div>
                 <div class="faq-answer">
                     <div class="faq-answer-content">
-                        Yes, several programs—especially at the Bangalore campus—offer global certifications and
-                        collaborations with organizations like IBM, Microsoft, IATA, and international professional
-                        bodies in finance and analytics.
+                        Yes, several programs, especially at the Yenepoya University Bangalore campus offer global
+                        certifications and collaborations with organizations like IBM, Microsoft, IATA, and
+                        international professional bodies in finance and analytics.
+
 
                     </div>
                 </div>
@@ -4362,7 +4497,11 @@
                 <div class="faq-answer">
                     <div class="faq-answer-content">
                         Graduates can pursue careers in healthcare, IT, business management, research, and specialized
-                        industries, supported by strong placement assistance and industry connections.
+                        industries, supported by strong placement assistance and industry connections. All of this is
+                        dependent on the graduates finding the Yenepoya University Mangalore courses and Yenepoya
+                        University Bangalore courses of their liking which can enhance their aptitude and skill of their
+                        chosen field.
+
 
                     </div>
                 </div>
@@ -4373,10 +4512,11 @@
     <!-- CTA -->
     <section class="cta-section">
         <div class="cta-content">
-            <h1>Begin Your Journey to Excellence</h1>
+            <h2><span style="font-size: 28px;">Build Your Future with</span><br> <span style="font-size: 73px;">Yenepoya
+                    (Deemed-to-be University)</span></h2>
             <p class="cta-text">
                 Join thousands of successful students transforming healthcare.<br>
-                Applications now open for 2025–26.
+                Applications now open for <span style="color: var(--accent-gold); font-weight: 900;">2026–27.</span>
             </p>
         </div>
 
@@ -4398,7 +4538,7 @@
             /* allow overlap */
 
             background:
-                linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.895)),
                 url('media/footer-link-bg.jpg.jpeg') center/cover no-repeat;
         }
 
@@ -4409,14 +4549,16 @@
             padding: 0 20px;
         }
 
-        .cta-content h1 {
+        .cta-content h2 {
             font-size: 78px;
-            font-weight: 400;
+            font-weight: 900;
             margin-bottom: 15px;
         }
 
         .cta-text {
+            color: white;
             font-size: 18px;
+            font-weight: 500;
             line-height: 1.6;
         }
 
@@ -4429,7 +4571,7 @@
             transform: translateX(-50%);
             background: #91d50090;
             /* semi-transparent */
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(10px);
             /* Safari support */
             border: 2px solid white;
@@ -4494,55 +4636,134 @@
 
 
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <h3>Yenepoya University</h3>
-                <p>Empowering students with world-class education in medical and health sciences. Building tomorrow's
-                    healthcare leaders today.</p>
-                <div class="social-links">
-                    <a href="#" class="social-link">f</a>
-                    <a href="#" class="social-link">t</a>
-                    <a href="#" class="social-link">in</a>
-                    <a href="#" class="social-link">ig</a>
+
+
+    <style>
+        .footer {
+            background: #f3f4f6;
+            padding: 60px 0;
+        }
+
+        /* LOGO FIX */
+        .footer-logo img {
+            max-width: 340px;
+            height: auto;
+            display: block;
+        }
+
+        /* TEXT */
+        .footer-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 12px;
+        }
+
+        .footer-item {
+            display: flex;
+            align-items: start;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: #111827;
+            font-size: 0.95rem;
+        }
+
+        .footer-item i {
+            color: #93d500;
+            font-size: 1.1rem;
+            margin-top: 3px;
+        }
+
+        .footer-item a {
+            color: #111827;
+            text-decoration: none;
+        }
+
+        .footer-item a:hover {
+            color: #577f00;
+        }
+
+        /* MOBILE CENTER */
+        @media (max-width: 768px) {
+            .footer {
+                text-align: center;
+            }
+
+            .footer-item {
+                justify-content: center;
+            }
+
+            .footer-logo {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+
+
+    <footer class="footer" id="contact">
+        <div class="container mt-4">
+
+            <div class="row align-items-start gy-4">
+
+                <!-- LOGO -->
+                <div class="col-lg-4 text-lg-start text-center footer-logo">
+                    <!-- IMPORTANT: CHECK PATH -->
+                    <img src="media/Yenepoya-Logo.svg" alt="Yenepoya Logo">
                 </div>
+
+                <!-- BANGALORE -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-title">Yenepoya University, Bangalore</div>
+
+                    <div class="footer-item">
+                        <i class="bi bi-house-door"></i>
+                        <span>
+                            Bhartiya City, Thanisandra Main Road,<br>
+                            Bengaluru, Karnataka - 560064
+                        </span>
+                    </div>
+
+                    <div class="footer-item">
+                        <i class="bi bi-envelope"></i>
+                        <a href="mailto:yenepoyab@gmail.com">yenepoyab@gmail.com</a>
+                    </div>
+
+                    <div class="footer-item">
+                        <i class="bi bi-telephone"></i>
+                        <a href="tel:+919955992252">+91 9955992252</a>
+                    </div>
+                </div>
+
+                <!-- MANGALORE -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-title">Yenepoya University, Mangalore</div>
+
+                    <div class="footer-item">
+                        <i class="bi bi-house-door"></i>
+                        <span>
+                            University Road, Deralakatte,<br>
+                            Mangalore, Karnataka - 575018
+                        </span>
+                    </div>
+
+                    <div class="footer-item">
+                        <i class="bi bi-envelope"></i>
+                        <a href="mailto:yenepoyab@gmail.com">yenepoyab@gmail.com</a>
+                    </div>
+
+                    <div class="footer-item">
+                        <i class="bi bi-telephone"></i>
+                        <a href="tel:+919955992252">+91 9955992252</a>
+                    </div>
+                </div>
+
             </div>
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <ul class="footer-links">
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#programs">Programs</a></li>
-                    <li><a href="#process">Admissions</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Programs</h4>
-                <ul class="footer-links">
-                    <li><a href="#">MBBS</a></li>
-                    <li><a href="#">BDS</a></li>
-                    <li><a href="#">Nursing</a></li>
-                    <li><a href="#">Pharmacy</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Contact</h4>
-                <ul class="footer-links">
-                    <li><a href="tel:+918242204668">+91 824 220 4668</a></li>
-                    <li><a href="mailto:admissions@yenepoya.edu.in">admissions@yenepoya.edu.in</a></li>
-                    <li><a href="#">Mangalore, Karnataka</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Yenepoya University. All rights reserved.</p>
-            <div class="social-links">
-                <a href="#" class="social-link">Privacy</a>
-                <a href="#" class="social-link">Terms</a>
-            </div>
+
         </div>
     </footer>
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
 
@@ -4627,6 +4848,44 @@
             }
         });
     </script>
+    <script>
+                            const courses = {
+                                bangalore: [
+                                    "BCA", "B.Tech", "BBA", "B.Com", "B.Des", "BA",
+                                    "B.Sc. (Psychology)", "BHM", "MCA", "MBA", "M.Com",
+                                    "M.Sc. (Chemistry)", "M.Tech", "M.Sc. (Psychology)",
+                                    "M.Sc. (Forensic Science)", "M.Sc. (Food Technology)"
+                                ],
+
+                                mangalore: [
+                                    "B.Sc. (Allied Health Sciences)", "MBBS", "BDS", "BAMS", "BPT", "B.O.T",
+                                    "B.Pharm", "B.Sc. (Nursing)", "PB B.Sc.", "B.Sc. (Food Technology)",
+                                    "Integrated B.Sc. – M.Sc.", "BHA", "M.Sc. (Allied Health Sciences)",
+                                    "MMLS", "M.AOTT", "M.DT", "MPT", "M.Pharm", "M.Sc. (Nursing)",
+                                    "M.Sc. (Life Sciences & Medical Sciences)", "MHA", "MPH",
+                                    "MSW (Human Resource Management)", "M.MSW", "M.PSW"
+                                ]
+                            };
+
+                            const campusSelect = document.getElementById("campus");
+                            const courseSelect = document.getElementById("course");
+
+                            campusSelect.addEventListener("change", function () {
+                                const selectedCampus = this.value;
+
+                                // Reset courses
+                                courseSelect.innerHTML = '<option value="">Select Course</option>';
+
+                                if (courses[selectedCampus]) {
+                                    courses[selectedCampus].forEach(course => {
+                                        const option = document.createElement("option");
+                                        option.value = course;
+                                        option.textContent = course;
+                                        courseSelect.appendChild(option);
+                                    });
+                                }
+                            });
+                        </script>
 </body>
 
 </html>
